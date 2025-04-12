@@ -1,0 +1,66 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35931.197
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FCS.Lib.Azure", "FCS.Lib.Azure\FCS.Lib.Azure.csproj", "{3B0298CC-0ECE-4703-96E2-E12F7BFFAEE0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FCS.Lib.BoVerk", "FCS.Lib.BoVerk\FCS.Lib.BoVerk.csproj", "{C91B3DD3-B6BC-483B-AE13-6EE885FAF363}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FCS.Lib.BrReg", "FCS.Lib.BrReg\FCS.Lib.BrReg.csproj", "{26F0A4B8-14B2-4D23-BD94-2EDE9CD0DDCD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FCS.Lib.Common", "FCS.Lib.Common\FCS.Lib.Common.csproj", "{3E5FA1AB-44D2-4CBC-B6D7-80B74CA9B265}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FCS.Lib.Gls.Track", "FCS.Lib.Gls\FCS.Lib.Gls.Track.csproj", "{6C3E5E59-FF11-48DB-B420-E98F05AE0384}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FCS.Lib.Maps.AzureMap", "FCS.Lib.Maps.AzureMap\FCS.Lib.Maps.AzureMap.csproj", "{7B8F1CC1-8739-426A-B1E7-7FC76D830A70}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FCS.Lib.Maps.OpenStreetMap", "FCS.Lib.Maps.OpenStreetMap\FCS.Lib.Maps.OpenStreetMap.csproj", "{6F0CEA7E-C71B-4B32-BE4F-F5D0DCDB5018}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FCS.Lib.PepPol", "FCS.Lib.PepPol\FCS.Lib.PepPol.csproj", "{46ECDCFB-7871-4351-8406-7C1770FB0C71}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FCS.Lib.Utility", "FCS.Lib.Utility\FCS.Lib.Utility.csproj", "{1F1FECFD-E07E-4B5C-A7F9-67FB89EE94A3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FCS.Lib.Vies", "FCS.Lib.Vies\FCS.Lib.Vies.csproj", "{309C3658-306A-4497-A4E7-F86D5AD860D7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FCS.Lib.Virk", "FCS.Lib.Virk\FCS.Lib.Virk.csproj", "{6E552538-DC05-4C27-8F2E-530A7927AA04}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FCS.Lib", "FCS.Lib\FCS.Lib.csproj", "{73A5882B-33C7-49C2-91B5-784B13CE25BE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3B0298CC-0ECE-4703-96E2-E12F7BFFAEE0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B0298CC-0ECE-4703-96E2-E12F7BFFAEE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C91B3DD3-B6BC-483B-AE13-6EE885FAF363}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C91B3DD3-B6BC-483B-AE13-6EE885FAF363}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{26F0A4B8-14B2-4D23-BD94-2EDE9CD0DDCD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{26F0A4B8-14B2-4D23-BD94-2EDE9CD0DDCD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3E5FA1AB-44D2-4CBC-B6D7-80B74CA9B265}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3E5FA1AB-44D2-4CBC-B6D7-80B74CA9B265}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6C3E5E59-FF11-48DB-B420-E98F05AE0384}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C3E5E59-FF11-48DB-B420-E98F05AE0384}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7B8F1CC1-8739-426A-B1E7-7FC76D830A70}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B8F1CC1-8739-426A-B1E7-7FC76D830A70}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F0CEA7E-C71B-4B32-BE4F-F5D0DCDB5018}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F0CEA7E-C71B-4B32-BE4F-F5D0DCDB5018}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{46ECDCFB-7871-4351-8406-7C1770FB0C71}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{46ECDCFB-7871-4351-8406-7C1770FB0C71}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1F1FECFD-E07E-4B5C-A7F9-67FB89EE94A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1F1FECFD-E07E-4B5C-A7F9-67FB89EE94A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{309C3658-306A-4497-A4E7-F86D5AD860D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{309C3658-306A-4497-A4E7-F86D5AD860D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E552538-DC05-4C27-8F2E-530A7927AA04}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E552538-DC05-4C27-8F2E-530A7927AA04}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{73A5882B-33C7-49C2-91B5-784B13CE25BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{73A5882B-33C7-49C2-91B5-784B13CE25BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2BCE24D4-1AD1-485B-9926-8E25023BAFFC}
+	EndGlobalSection
+EndGlobal
