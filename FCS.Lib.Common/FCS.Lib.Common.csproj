@@ -41,17 +41,18 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="BasicAuth.cs" />
-    <Compile Include="HttpResponseView.cs" />
+    <Compile Include="Models\HttpResponseView.cs" />
+    <Compile Include="Models\Link.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>AssemblyInfo.tt</DependentUpon>
     </Compile>
-    <Compile Include="TaxIdInfo.cs" />
-    <Compile Include="VatInfoDto.cs" />
-    <Compile Include="VatState.cs" />
-    <Compile Include="LifeCycle.cs" />
-    <Compile Include="TimeFrame.cs" />
+    <Compile Include="Models\TaxIdInfo.cs" />
+    <Compile Include="Models\VatInfo.cs" />
+    <Compile Include="Models\VatState.cs" />
+    <Compile Include="Models\LifeCycle.cs" />
+    <Compile Include="Models\TimeFrame.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -67,14 +68,6 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="Microsoft.Build.Framework">
-      <Version>17.13.9</Version>
-    </PackageReference>
-    <PackageReference Include="System.Runtime.CompilerServices.Unsafe">
-      <Version>6.1.2</Version>
-    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />

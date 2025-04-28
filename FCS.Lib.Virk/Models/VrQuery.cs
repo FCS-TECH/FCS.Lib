@@ -39,22 +39,14 @@ namespace FCS.Lib.Virk.Models;
 public class VrQuery
 {
     /// <summary>
-    ///     Gets or sets the VAT (Value Added Tax) number associated with the query.
+    ///     Gets or sets the name of the entity associated with the query.
     /// </summary>
     /// <remarks>
     ///     This property is used to perform a precise lookup when validating a <see cref="VrQuery" />.
-    ///     A valid precise lookup requires that either this property or the <see cref="EntityName" />
+    ///     A valid precise lookup requires that either this property or the <see cref="VatNumber" />
     ///     is not null or whitespace.
     /// </remarks>
-    public string VatNumber { get; set; } = "";
-
-    /// <summary>
-    ///     Gets or sets the name of the street associated with the query.
-    /// </summary>
-    /// <remarks>
-    ///     This property is used during address lookups to validate that the street name is not null or whitespace.
-    /// </remarks>
-    public string StreetName { get; set; } = "";
+    public string EntityName { get; set; } = "";
 
     /// <summary>
     ///     Gets or sets the house number associated with the address lookup.
@@ -66,6 +58,24 @@ public class VrQuery
     public string HouseNumber { get; set; } = "";
 
     /// <summary>
+    ///     Gets or sets the name of the street associated with the query.
+    /// </summary>
+    /// <remarks>
+    ///     This property is used during address lookups to validate that the street name is not null or whitespace.
+    /// </remarks>
+    public string StreetName { get; set; } = "";
+
+    /// <summary>
+    ///     Gets or sets the VAT (Value Added Tax) number associated with the query.
+    /// </summary>
+    /// <remarks>
+    ///     This property is used to perform a precise lookup when validating a <see cref="VrQuery" />.
+    ///     A valid precise lookup requires that either this property or the <see cref="EntityName" />
+    ///     is not null or whitespace.
+    /// </remarks>
+    public string VatNumber { get; set; } = "";
+
+    /// <summary>
     ///     Gets or sets the postal code associated with the query.
     /// </summary>
     /// <remarks>
@@ -74,13 +84,4 @@ public class VrQuery
     /// </remarks>
     public string ZipCode { get; set; } = "";
 
-    /// <summary>
-    ///     Gets or sets the name of the entity associated with the query.
-    /// </summary>
-    /// <remarks>
-    ///     This property is used to perform a precise lookup when validating a <see cref="VrQuery" />.
-    ///     A valid precise lookup requires that either this property or the <see cref="VatNumber" />
-    ///     is not null or whitespace.
-    /// </remarks>
-    public string EntityName { get; set; } = "";
 }

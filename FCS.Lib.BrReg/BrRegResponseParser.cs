@@ -25,6 +25,7 @@
 // <summary></summary>
 // ***********************************************************************
 
+using System;
 using System.Collections.Generic;
 using FCS.Lib.BrReg.Models;
 using Newtonsoft.Json;
@@ -48,29 +49,91 @@ public class BrRegResponseParser
     /// </exception>
     public BrRegCompany ParseOrgNumberRequestContent(string responseData)
     {
-        return JsonConvert.DeserializeObject<BrRegCompany>(responseData);
+        try
+        {
+            return JsonConvert.DeserializeObject<BrRegCompany>(responseData);
+        }
+        catch (JsonSerializationException)
+        {
+            return null;
+        }
     }
 
     /// <summary>
-    ///     Parses the response data from a search request to the Brønnøysund Register Center (Brønnøysundregistrene)
-    ///     and converts it into a list of <see cref="BrRegCompany" /> objects.
+    /// Extracts a list of companies from the provided Brønnøysund Register Center (BrReg) search response.
     /// </summary>
-    /// <param name="responseData">
-    ///     The JSON response data from the Brønnøysund Register Center search request.
+    /// <param name="content">
+    /// The search response containing embedded entities representing companies registered in the Brønnøysund Register Center.
     /// </param>
     /// <returns>
-    ///     A list of <see cref="BrRegCompany" /> objects representing the companies that match the search criteria.
+    /// A list of <see cref="BrRegCompany"/> objects representing the companies extracted from the response.
     /// </returns>
     /// <remarks>
-    ///     The method deserializes the JSON response into a <see cref="BrRegSearchResponse" /> object and extracts
-    ///     the list of entities from it.
+    /// This method retrieves the entities embedded within the <see cref="BrRegResponse"/> and returns them as a list of domain-specific models.
     /// </remarks>
-    /// <exception cref="JsonException">
-    ///     Thrown if the JSON response data cannot be deserialized into the expected format.
-    /// </exception>
-    public IList<BrRegCompany> ParseSearchRequestContent(string responseData)
+    public IList<BrRegCompany> GetEntities(BrRegResponse content)
     {
-        var result = JsonConvert.DeserializeObject<BrRegSearchResponse>(responseData);
-        return result.Embedded.Entities;
+        try
+        {
+            return content.Embedded.Entities;
+        }
+        catch (Exception)
+        {
+            return null;
+        }
     }
+
+    /// <summary>
+    ///     Extracts pagination information from a <see cref="BrRegResponse" /> object.
+    /// </summary>
+    /// <param name="content">
+    ///     The <see cref="BrRegResponse" /> object containing the pagination metadata.
+    /// </param>
+    /// <returns>
+    ///     A <see cref="BrPageInfo" /> object representing the pagination details, such as page size,
+    ///     total elements, total pages, and the current page number.
+    /// </returns>
+    /// <remarks>
+    ///     This method retrieves the <see cref="BrPageInfo" /> property from the provided
+    ///     <see cref="BrRegResponse" /> object, which contains metadata about the paginated results
+    ///     of a search query.
+    /// </remarks>
+    public BrPageInfo GetPageInfo(BrRegResponse content)
+    {
+        try
+        {
+            return content.PageInfo;
+        }
+        catch (Exception)
+        {
+            return null;
+        }
+        
+    }
+
+    /// <summary>
+    ///     Retrieves the navigational links from a <see cref="BrRegResponse" /> object.
+    /// </summary>
+    /// <param name="content">
+    ///     The <see cref="BrRegResponse" /> object containing the links to be retrieved.
+    /// </param>
+    /// <returns>
+    ///     A <see cref="BrLinks" /> object representing the navigational links, such as first, self, next, and last.
+    /// </returns>
+    /// <remarks>
+    ///     This method extracts the <see cref="BrLinks" /> property from the provided <see cref="BrRegResponse" />.
+    ///     The links are typically used for pagination or navigating through resources.
+    /// </remarks>
+    public BrLinks GetPageLinks(BrRegResponse content)
+    {
+        try
+        {
+            return content.Links;
+        }
+        catch (Exception)
+        {
+            return null;
+        }
+    }
+
 }

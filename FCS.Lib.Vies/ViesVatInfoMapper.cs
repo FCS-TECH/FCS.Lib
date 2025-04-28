@@ -27,11 +27,12 @@
 using System;
 using System.Globalization;
 using FCS.Lib.Common;
+using FCS.Lib.Common.Models;
 
 namespace FCS.Lib.Vies;
 
 /// <summary>
-///     Provides functionality to map VAT information from a <see cref="ViesEntityModel" /> to a <see cref="VatInfoDto" />.
+///     Provides functionality to map VAT information from a <see cref="ViesEntityModel" /> to a <see cref="VatInfo" />.
 /// </summary>
 /// <remarks>
 ///     This class is responsible for transforming VAT-related data from the VIES system into a structured format
@@ -40,14 +41,14 @@ namespace FCS.Lib.Vies;
 public class ViesVatInfoMapper
 {
     /// <summary>
-    ///     Maps a <see cref="ViesEntityModel" /> to a <see cref="VatInfoDto" /> object.
+    ///     Maps a <see cref="ViesEntityModel" /> to a <see cref="VatInfo" /> object.
     /// </summary>
     /// <param name="viesEntity">The source entity containing VAT information to be mapped.</param>
     /// <returns>
-    ///     A <see cref="VatInfoDto" /> object populated with the mapped data from the provided
+    ///     A <see cref="VatInfo" /> object populated with the mapped data from the provided
     ///     <see cref="ViesEntityModel" />.
     /// </returns>
-    public VatInfoDto MapViesVatInfoDto(ViesEntityModel viesEntity)
+    public VatInfo MapViesVatInfoDto(ViesEntityModel viesEntity)
     {
         if (viesEntity == null) return null;
 
@@ -102,7 +103,7 @@ public class ViesVatInfoMapper
         }
 
         // generate return object
-        var c = new VatInfoDto
+        var c = new VatInfo
         {
             Name = viesEntity.Name.Normalize(),
             Address = address,

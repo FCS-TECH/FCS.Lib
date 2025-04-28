@@ -1,2 +1,1 @@
-# FCS.Lib.Common
-
+# fcs-common

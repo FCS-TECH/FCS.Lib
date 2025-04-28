@@ -28,6 +28,7 @@
 using System.Net.Http;
 using System.Threading.Tasks;
 using FCS.Lib.Common;
+using FCS.Lib.Common.Models;
 
 namespace FCS.Lib.PepPol;
 

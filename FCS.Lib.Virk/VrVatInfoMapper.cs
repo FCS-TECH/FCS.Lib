@@ -25,6 +25,7 @@
 //  ***********************************************************************
 
 using FCS.Lib.Common;
+using FCS.Lib.Common.Models;
 using FCS.Lib.Virk.Models;
 
 namespace FCS.Lib.Virk;
@@ -40,13 +41,13 @@ namespace FCS.Lib.Virk;
 public class VrVatInfoMapper
 {
     /// <summary>
-    ///     Maps a <see cref="VrVirksomhed" /> instance to a <see cref="VatInfoDto" /> object.
+    ///     Maps a <see cref="VrVirksomhed" /> instance to a <see cref="VatInfo" /> object.
     /// </summary>
     /// <param name="vrVirk">The <see cref="VrVirksomhed" /> instance containing VAT-related information to be mapped.</param>
-    /// <returns>A <see cref="VatInfoDto" /> object populated with data from the provided <see cref="VrVirksomhed" /> instance.</returns>
-    public VatInfoDto MapVrToCrm(VrVirksomhed vrVirk)
+    /// <returns>A <see cref="VatInfo" /> object populated with data from the provided <see cref="VrVirksomhed" /> instance.</returns>
+    public VatInfo MapVrToCrm(VrVirksomhed vrVirk)
     {
-        var c = new VatInfoDto
+        var c = new VatInfo
         {
             Name = vrVirk.VirksomhedMetadata.NyesteNavn.Navn,
             Address =

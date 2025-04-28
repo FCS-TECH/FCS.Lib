@@ -51,7 +51,7 @@ public class BasicAuth(string username, string password)
     /// <exception cref="ArgumentNullException">
     ///     Thrown if the username or password is null during the initialization of the <see cref="BasicAuth" /> class.
     /// </exception>
-    public string GetBaseAuth()
+    public string GetBasicAuth()
     {
         var plainTextBytes = Encoding.UTF8.GetBytes($"{_username}:{_password}");
         return Convert.ToBase64String(plainTextBytes);

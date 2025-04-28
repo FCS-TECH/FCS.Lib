@@ -28,6 +28,7 @@
 using System;
 using FCS.Lib.BrReg.Models;
 using FCS.Lib.Common;
+using FCS.Lib.Common.Models;
 
 namespace FCS.Lib.BrReg;
 
@@ -37,19 +38,19 @@ namespace FCS.Lib.BrReg;
 /// </summary>
 /// <remarks>
 ///     This class is responsible for transforming data from BrRegCompany models into
-///     VAT-specific representations such as <see cref="VatInfoDto" /> and <see cref="TaxIdInfo" />.
+///     VAT-specific representations such as <see cref="VatInfo" /> and <see cref="TaxIdInfo" />.
 ///     It is utilized in services that interact with Brønnøysund Register Center data.
 /// </remarks>
 public class BrRegVatInfoMapper
 {
     /// <summary>
-    ///     Maps a <see cref="BrRegCompany" /> object to a <see cref="VatInfoDto" /> object.
+    ///     Maps a <see cref="BrRegCompany" /> object to a <see cref="VatInfo" /> object.
     /// </summary>
     /// <param name="brCompany">The <see cref="BrRegCompany" /> instance containing the source data.</param>
-    /// <returns>A <see cref="VatInfoDto" /> instance populated with the mapped data.</returns>
-    public VatInfoDto MapBrToCrm(BrRegCompany brCompany)
+    /// <returns>A <see cref="VatInfo" /> instance populated with the mapped data.</returns>
+    public VatInfo MapBrToVatInfoDto(BrRegCompany brCompany)
     {
-        return new VatInfoDto
+        return new VatInfo
         {
             Name = brCompany.Navn,
             Address = string.Join(", ", brCompany.Forretningsadresse.Adresse),

@@ -50,6 +50,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\BrLinks.cs" />
+    <Compile Include="Models\BrPageInfo.cs" />
     <Compile Include="Models\BrRegAddress.cs" />
     <Compile Include="Models\BrRegCompany.cs" />
     <Compile Include="Models\BrRegCompanyType.cs" />
@@ -57,7 +59,8 @@
     <Compile Include="BrRegHttpRequest.cs" />
     <Compile Include="BrRegResponseParser.cs" />
     <Compile Include="BrRegVatInfoMapper.cs" />
-    <Compile Include="Models\BrRegSearchResponse.cs" />
+    <Compile Include="Models\BrRegResponse.cs" />
+    <Compile Include="Models\EntityList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

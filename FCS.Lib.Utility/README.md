@@ -1,2 +1,1 @@
-# FCS.Lib.Utility
-
+# fcs-utils

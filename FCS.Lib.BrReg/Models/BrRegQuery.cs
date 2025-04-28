@@ -69,7 +69,7 @@ public class BrRegQuery
     /// <remarks>
     ///     This property is used to specify or retrieve the name associated with the VAT number being queried.
     /// </remarks>
-    public string Name { get; set; } = "";
+    public string EntityName { get; set; } = "";
 
     /// <summary>
     ///     Gets or sets the organisation number associated with the query.
@@ -81,7 +81,7 @@ public class BrRegQuery
     ///     The VAT number is used to identify a specific entity in the Brønnøysund Register Centre.
     ///     Ensure the VAT number is valid and correctly formatted before setting this property.
     /// </remarks>
-    public string OrgNumber { get; set; } = "";
+    public string VatNumber { get; set; } = "";
 
     /// <summary>
     ///     Gets or sets the postal code associated with the query.

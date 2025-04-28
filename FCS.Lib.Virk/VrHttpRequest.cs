@@ -28,6 +28,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using FCS.Lib.Common;
+using FCS.Lib.Common.Models;
 
 namespace FCS.Lib.Virk;
 
