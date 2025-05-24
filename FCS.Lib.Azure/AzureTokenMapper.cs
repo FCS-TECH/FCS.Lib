@@ -1,4 +1,4 @@
-﻿// ***********************************************************************
+// ***********************************************************************
 // Assembly         : FCS.Lib.Azure
 // Author           : 
 // Created          : 2023 10 02 13:17
@@ -25,8 +25,8 @@
 // ***********************************************************************
 
 using System;
-using System.Text.Json;
 using FCS.Lib.Utility;
+using Newtonsoft.Json;
 
 namespace FCS.Lib.Azure;
 
@@ -37,7 +37,7 @@ public class AzureTokenMapper
         if (string.IsNullOrWhiteSpace(json))
             throw new ArgumentNullException(nameof(json));
 
-        var token = JsonSerializer.Deserialize<AzureTokenDto>(json);
+        var token = JsonConvert.DeserializeObject<AzureTokenDto>(json);
         return token == null
             ? null
             : new AzureToken
