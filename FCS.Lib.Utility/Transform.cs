@@ -1,7 +1,7 @@
 // // ***********************************************************************
 // // Solution         : Inno.Api.v2
 // // Assembly         : FCS.Lib.Utility
-// // Filename         : Mogrify.cs
+// // Filename         : Transform.cs
 // // Created          : 2025-01-03 14:01
 // // Last Modified By : dev
 // // Last Modified On : 2025-01-04 12:01
@@ -43,15 +43,44 @@ namespace FCS.Lib.Utility;
 ///     string manipulations, enumeration conversions, and other general-purpose utilities.
 ///     It is designed to simplify common operations and ensure consistency across the application.
 /// </remarks>
-public static class Mogrify
+public static class Transform
 {
+    /// <summary>
+    ///     Determines whether two dates fall within the same virtual month, based on the specified offset.
+    /// </summary>
+    /// <param name="lastDate">
+    ///     The last date on record, represented as a string in a valid date format.
+    /// </param>
+    /// <param name="workDate">
+    ///     The reference date, represented as a string in a valid date format.
+    /// </param>
+    /// <param name="offSet">
+    ///     The offset that defines the starting day of the virtual month.
+    /// </param>
+    /// <returns>
+    ///     <c>true</c> if the two dates fall within the same virtual month; otherwise, <c>false</c>.
+    /// </returns>
+    /// <exception cref="FormatException">
+    ///     Thrown when either <paramref name="lastDate" /> or <paramref name="workDate" /> is not in a valid date format.
+    /// </exception>
+    /// <remarks>
+    ///     A virtual month is defined as a custom period starting and ending on specific days of the month, 
+    ///     determined by the <paramref name="offSet" /> parameter.
+    /// </remarks>
+    public static bool SameVirtualMonth(string lastDate, string workDate, int offSet)
+    {
+        var lastDateTime = IsoDateToTimestamp(lastDate);
+        return lastDateTime >= GetVirtualMonthStart(workDate, offSet) && 
+               lastDateTime <= GetVirtualMonthEnd(workDate, offSet);
+    }
+
     /// <summary>
     ///     Calculates the Unix timestamp for the start of a virtual month based on the provided date and starting day.
     /// </summary>
     /// <param name="date">The date in string format (e.g., "yyyy-MM-dd") to calculate the virtual month's start.</param>
     /// <param name="beginAt">The day of the month that marks the beginning of the virtual month (e.g., 1 for the 1st day).</param>
     /// <returns>The Unix timestamp representing the start of the virtual month.</returns>
-    public static long VirtualMonthStartTimestamp(string date, int beginAt)
+    public static long GetVirtualMonthStart(string date, int beginAt)
     {
         return DateTimeToTimeStamp(VirtualMonthStart(date, beginAt));
     }
@@ -64,11 +93,10 @@ public static class Mogrify
     /// <param name="date">The date in string format (e.g., ISO 8601) used to determine the virtual month's end.</param>
     /// <param name="beginAt">The day of the month that marks the start of the virtual month (e.g., 1 for the 1st day).</param>
     /// <returns>The Unix timestamp representing the virtual month's end.</returns>
-    public static long VirtualMonthEndTimestamp(string date, int beginAt)
+    public static long GetVirtualMonthEnd(string date, int beginAt)
     {
         return DateTimeToTimeStamp(VirtualMonthEnd(date, beginAt));
     }
-
 
     /// <summary>
     ///     Calculates the start date of a virtual month based on the given date and the specified starting day of the month.
@@ -122,10 +150,18 @@ public static class Mogrify
 
 
     /// <summary>
+    /// Determines the last day of the month based on the specified date and the starting day of the virtual month.
     /// </summary>
-    /// <param name="dt"></param>
-    /// <param name="beginAt"></param>
-    /// <returns></returns>
+    /// <param name="dt">The <see cref="DateTime"/> representing the date to evaluate.</param>
+    /// <param name="beginAt">
+    /// The starting day of the virtual month. This value determines the offset for calculating the end day.
+    /// For example, if <paramref name="beginAt"/> is 1, the virtual month starts on the first day of the month.
+    /// </param>
+    /// <returns>
+    /// An <see cref="int"/> representing the last day of the virtual month.
+    /// If the virtual month starts on the first day, it returns the actual last day of the month.
+    /// For February in leap years, it returns 29.
+    /// </returns>
     private static int EndDay(DateTime dt, int beginAt)
     {
         var endDay = beginAt - 1;
@@ -139,65 +175,6 @@ public static class Mogrify
             2 => 28,
             _ => endDay
         };
-    }
-
-
-    /// <summary>
-    ///     Sanitizes the provided phone number by removing specific country codes and non-numeric characters.
-    /// </summary>
-    /// <param name="phone">The phone number to sanitize.</param>
-    /// <returns>
-    ///     A sanitized phone number containing only numeric characters.
-    ///     Returns an empty string if the input is null, empty, or consists solely of whitespace.
-    /// </returns>
-    public static string SanitizePhone(string phone)
-    {
-        if (string.IsNullOrWhiteSpace(phone))
-            return "";
-        phone = phone.Replace("+45", "").Replace("+46", "").Replace("+47", "");
-        var regexObj = new Regex(@"[^\d]");
-        return regexObj.Replace(phone, "");
-    }
-
-
-    /// <summary>
-    ///     Sanitizes the provided zip code by removing all non-numeric characters.
-    /// </summary>
-    /// <param name="zipCode">The zip code to sanitize.</param>
-    /// <returns>
-    ///     A sanitized zip code containing only numeric characters. Returns an empty string if the input is null, empty,
-    ///     or consists only of whitespace.
-    /// </returns>
-    public static string SanitizeZipCode(string zipCode)
-    {
-        if (string.IsNullOrWhiteSpace(zipCode))
-            return "";
-        var regexObj = new Regex(@"[^\d]");
-        return regexObj.Replace(zipCode, "");
-    }
-
-
-    /// <summary>
-    ///     Extracts the month component from a given Unix timestamp.
-    /// </summary>
-    /// <param name="timeStamp">The Unix timestamp to extract the month from.</param>
-    /// <returns>An integer representing the month (1 for January, 2 for February, etc.).</returns>
-    public static int MonthFromTimestamp(long timeStamp)
-    {
-        return TimeStampToDateTime(timeStamp).Month;
-    }
-
-    /// <summary>
-    ///     Determines whether the specified Unix timestamp falls within the specified month.
-    /// </summary>
-    /// <param name="timestamp">The Unix timestamp to evaluate.</param>
-    /// <param name="month">The month to check against, represented as an integer (1 for January, 2 for February, etc.).</param>
-    /// <returns>
-    ///     <c>true</c> if the timestamp corresponds to the specified month; otherwise, <c>false</c>.
-    /// </returns>
-    public static bool TimestampInMonth(long timestamp, int month)
-    {
-        return TimeStampToDateTime(timestamp).Month == month;
     }
 
 
@@ -349,166 +326,6 @@ public static class Mogrify
 
 
     /// <summary>
-    ///     Converts a given <see cref="TimeSpan" /> to its equivalent total number of minutes.
-    /// </summary>
-    /// <param name="timespan">The <see cref="TimeSpan" /> to be converted.</param>
-    /// <returns>The total number of minutes represented by the <paramref name="timespan" />.</returns>
-    public static long TimespanToMinutes(TimeSpan timespan)
-    {
-        return Convert.ToUInt32(timespan.Ticks / 10000000L) / 60;
-    }
-
-    /// <summary>
-    ///     Reverses the given boolean value.
-    /// </summary>
-    /// <param name="value">The boolean value to be reversed.</param>
-    /// <returns>
-    ///     <c>true</c> if <paramref name="value" /> is <c>false</c>;
-    ///     otherwise, <c>false</c> if <paramref name="value" /> is <c>true</c>.
-    /// </returns>
-    public static bool BoolReverse(bool value)
-    {
-        return !value;
-    }
-
-
-    /// <summary>
-    ///     Converts a boolean value to its integer representation.
-    /// </summary>
-    /// <param name="value">The boolean value to convert.</param>
-    /// <returns>Returns 1 if <paramref name="value" /> is <c>true</c>, otherwise returns 0.</returns>
-    public static int BoolToInt(bool value)
-    {
-        return value ? 1 : 0;
-    }
-
-
-    /// <summary>
-    ///     Converts a boolean value to its string representation.
-    /// </summary>
-    /// <param name="value">The boolean value to convert.</param>
-    /// <returns>
-    ///     A string representation of the boolean value: "true" if the value is <c>true</c>,
-    ///     or "false" if the value is <c>false</c>.
-    /// </returns>
-    public static string BoolToString(bool value)
-    {
-        return value ? "true" : "false";
-    }
-
-
-    /// <summary>
-    /// </summary>
-    /// <param name="value"></param>
-    /// <returns></returns>
-    public static bool IntToBool(int value)
-    {
-        return value is > 0 or < 0;
-    }
-
-
-    /// <summary>
-    ///     Converts an enumeration value to its equivalent integer representation.
-    /// </summary>
-    /// <param name="enumeration">The enumeration value to be converted. Must be a valid enumeration type.</param>
-    /// <returns>The integer representation of the specified enumeration value.</returns>
-    /// <exception cref="InvalidCastException">
-    ///     Thrown if the provided <paramref name="enumeration" /> is not a valid enumeration type.
-    /// </exception>
-    /// <remarks>
-    ///     This method uses <see cref="Convert.ToInt32(object, IFormatProvider)" /> to perform the conversion.
-    ///     Ensure that the input is a valid enumeration value to avoid runtime exceptions.
-    /// </remarks>
-    public static int EnumToInt(object enumeration)
-    {
-        return Convert.ToInt32(enumeration, CultureInfo.InvariantCulture);
-    }
-
-    /// <summary>
-    ///     Converts the specified enumeration value to its string representation.
-    /// </summary>
-    /// <param name="value">The enumeration value to convert. If <c>null</c>, an empty string is returned.</param>
-    /// <returns>The string representation of the enumeration value, or an empty string if the value is <c>null</c>.</returns>
-    public static string EnumToString(Enum value)
-    {
-        return value == null ? string.Empty : value.ToString();
-    }
-
-
-    /// <summary>
-    ///     Retrieves a collection of all values of a specified enumeration type.
-    /// </summary>
-    /// <typeparam name="T">
-    ///     The enumeration type whose values are to be retrieved. This type parameter must be an enumeration.
-    /// </typeparam>
-    /// <returns>
-    ///     An <see cref="IEnumerable{T}" /> containing all values of the specified enumeration type.
-    /// </returns>
-    /// <exception cref="ArgumentException">
-    ///     Thrown if <typeparamref name="T" /> is not an enumeration type.
-    /// </exception>
-    public static IEnumerable<T> GetEnumList<T>()
-    {
-        return (T[])Enum.GetValues(typeof(T));
-    }
-
-
-    /// <summary>
-    ///     Converts an integer value to its corresponding enumeration value of type <typeparamref name="T" />.
-    /// </summary>
-    /// <typeparam name="T">The enumeration type to which the integer value will be converted.</typeparam>
-    /// <param name="value">The integer value to be converted to the enumeration.</param>
-    /// <returns>The enumeration value of type <typeparamref name="T" /> that corresponds to the provided integer value.</returns>
-    /// <exception cref="ArgumentException">
-    ///     Thrown if <typeparamref name="T" /> is not an enumeration type.
-    /// </exception>
-    public static T IntToEnum<T>(int value)
-    {
-        return (T)Enum.ToObject(typeof(T), value);
-    }
-
-
-    /// <summary>
-    ///     Converts a list of elements into a single string, with elements separated by a default delimiter.
-    /// </summary>
-    /// <typeparam name="T">The type of elements in the list.</typeparam>
-    /// <param name="list">The list of elements to be converted into a string.</param>
-    /// <returns>
-    ///     A string representation of the list, where each element is separated by a semicolon (";").
-    ///     If the list is <c>null</c>, an empty string is returned.
-    /// </returns>
-    public static string ListToString<T>(List<T> list)
-    {
-        return ListToString(list, ";");
-    }
-
-    /// <summary>
-    ///     Converts a list of elements to a single string, with elements separated by a specified delimiter.
-    /// </summary>
-    /// <typeparam name="T">The type of elements in the list.</typeparam>
-    /// <param name="list">
-    ///     The list of elements to convert to a string. If the list is <c>null</c>, an empty string is
-    ///     returned.
-    /// </param>
-    /// <param name="delimiter">The string used to separate the elements in the resulting string.</param>
-    /// <returns>
-    ///     A string representation of the list, with elements separated by the specified delimiter.
-    ///     If the list is empty or <c>null</c>, an empty string is returned.
-    /// </returns>
-    public static string ListToString<T>(List<T> list, string delimiter)
-    {
-        var empty = string.Empty;
-        if (list == null) return empty;
-        var enumerator = (IEnumerator)list.GetType().GetMethod("GetEnumerator")?.Invoke(list, null);
-        while (enumerator != null && enumerator.MoveNext())
-            if (enumerator.Current != null)
-                empty = string.Concat(empty, enumerator.Current.ToString(), delimiter);
-
-        return empty;
-    }
-
-
-    /// <summary>
     ///     Converts a PascalCase string to a lowercase string with words separated by hyphens.
     /// </summary>
     /// <param name="value">The PascalCase string to be converted.</param>
@@ -517,39 +334,6 @@ public static class Mogrify
     {
         var result = string.Join("-", Regex.Split(value, @"(?<!^)(?=[A-Z])").ToArray());
         return result.ToLower(CultureInfo.InvariantCulture);
-    }
-
-
-    /// <summary>
-    ///     Converts a string representation of a boolean value to its <see cref="bool" /> equivalent.
-    /// </summary>
-    /// <param name="value">
-    ///     The string to convert. Accepted values are "true", "false", "1", or "0",
-    ///     in a case-insensitive manner. Any other value or <c>null</c> will result in <c>false</c>.
-    /// </param>
-    /// <returns>
-    ///     <c>true</c> if the input string represents "true" or "1"; otherwise, <c>false</c>.
-    /// </returns>
-    public static bool StringToBool(string value)
-    {
-        if (string.IsNullOrEmpty(value))
-            return false;
-
-        var flag = false;
-        var upper = value.ToUpperInvariant();
-        if (string.Compare(upper, "true", StringComparison.OrdinalIgnoreCase) == 0)
-        {
-            flag = true;
-        }
-        else if (string.CompareOrdinal(upper, "false") == 0)
-        {
-        }
-        else if (string.CompareOrdinal(upper, "1") == 0)
-        {
-            flag = true;
-        }
-
-        return flag;
     }
 
 
@@ -700,47 +484,184 @@ public static class Mogrify
     }
 
 
-    ///// <summary>
-    ///// get string from date time
-    ///// </summary>
-    ///// <returns></returns>
-    //public static string CurrentDateTimeToAlpha()
-    //{
-    //    var dt = DateTime.UtcNow.ToString("yy MM dd HH MM ss");
-    //    var sb = new StringBuilder();
-    //    var dts = dt.Split(' ');
-    //    sb.Append((char) int.Parse(dts[0]) + 65);
-    //    sb.Append((char) int.Parse(dts[1]) + 65);
-    //    sb.Append((char) int.Parse(dts[2]) + 97);
-    //    sb.Append((char) int.Parse(dts[3]) + 65);
-    //    sb.Append((char) int.Parse(dts[4]) + 97);
-    //    sb.Append((char) int.Parse(dts[5]) + 97);
-    //    return sb.ToString();
-    //}
+    /// <summary>
+    ///     Converts an enumeration value to its equivalent integer representation.
+    /// </summary>
+    /// <param name="enumeration">The enumeration value to be converted. Must be a valid enumeration type.</param>
+    /// <returns>The integer representation of the specified enumeration value.</returns>
+    /// <exception cref="IFormatProvider">
+    ///     Thrown if the provided <paramref name="enumeration" /> is not a valid enumeration type.
+    /// </exception>
+    /// <remarks>
+    ///     This method uses <see cref="enumeration" /> to perform the conversion.
+    ///     Ensure that the input is a valid enumeration value to avoid runtime exceptions.
+    /// </remarks>
+    public static int EnumToInt(object enumeration)
+    {
+        return Convert.ToInt32(enumeration, CultureInfo.InvariantCulture);
+    }
 
-    ///// <summary>
-    ///// integer to letter
-    ///// </summary>
-    ///// <param name="value"></param>
-    ///// <returns>string</returns>
-    //public static string IntToLetter(int value)
-    //{
-    //    var empty = string.Empty;
-    //    var num = 97;
-    //    var str = "";
-    //    var num1 = 0;
-    //    var num2 = 97;
-    //    for (var i = 0; i <= value; i++)
-    //    {
-    //        num1++;
-    //        empty = string.Concat(str, Convert.ToString(Convert.ToChar(num), CultureInfo.InvariantCulture));
-    //        num++;
-    //        if (num1 != 26) continue;
-    //        num1 = 0;
-    //        str = Convert.ToChar(num2).ToString(CultureInfo.InvariantCulture);
-    //        num2++;
-    //        num = 97;
-    //    }
-    //    return empty;
-    //}
+    /// <summary>
+    ///     Converts the specified enumeration value to its string representation.
+    /// </summary>
+    /// <param name="value">The enumeration value to convert. If <c>null</c>, an empty string is returned.</param>
+    /// <returns>The string representation of the enumeration value, or an empty string if the value is <c>null</c>.</returns>
+    public static string EnumToString(Enum value)
+    {
+        return value == null ? string.Empty : value.ToString();
+    }
+
+    /// <summary>
+    ///     Retrieves a collection of all values of a specified enumeration type.
+    /// </summary>
+    /// <typeparam name="T">
+    ///     The enumeration type whose values are to be retrieved. This type parameter must be an enumeration.
+    /// </typeparam>
+    /// <returns>
+    ///     An <see cref="IEnumerable{T}" /> containing all values of the specified enumeration type.
+    /// </returns>
+    /// <exception cref="ArgumentException">
+    ///     Thrown if <typeparamref name="T" /> is not an enumeration type.
+    /// </exception>
+    public static IEnumerable<T> GetEnumList<T>()
+    {
+        return (T[])Enum.GetValues(typeof(T));
+    }
+
+    /// <summary>
+    ///     Converts an integer value to its corresponding enumeration value of type <typeparamref name="T" />.
+    /// </summary>
+    /// <typeparam name="T">The enumeration type to which the integer value will be converted.</typeparam>
+    /// <param name="value">The integer value to be converted to the enumeration.</param>
+    /// <returns>The enumeration value of type <typeparamref name="T" /> that corresponds to the provided integer value.</returns>
+    /// <exception cref="ArgumentException">
+    ///     Thrown if <typeparamref name="T" /> is not an enumeration type.
+    /// </exception>
+    public static T IntToEnum<T>(int value)
+    {
+        return (T)Enum.ToObject(typeof(T), value);
+    }
+
+    /// <summary>
+    ///     Converts a string representation of a boolean value to its <see cref="bool" /> equivalent.
+    /// </summary>
+    /// <param name="value">
+    ///     The string to convert. Accepted values are "true", "false", "1", or "0",
+    ///     in a case-insensitive manner. Any other value or <c>null</c> will result in <c>false</c>.
+    /// </param>
+    /// <returns>
+    ///     <c>true</c> if the input string represents "true" or "1"; otherwise, <c>false</c>.
+    /// </returns>
+    public static bool StringToBool(string value)
+    {
+        if (string.IsNullOrEmpty(value))
+            return false;
+
+        var flag = false;
+        var upper = value.ToUpperInvariant();
+        if (string.Compare(upper, "true", StringComparison.OrdinalIgnoreCase) == 0)
+        {
+            flag = true;
+        }
+        else if (string.CompareOrdinal(upper, "false") == 0)
+        {
+        }
+        else if (string.CompareOrdinal(upper, "1") == 0)
+        {
+            flag = true;
+        }
+
+        return flag;
+    }
+
+    /// <summary>
+    ///     Reverses the given boolean value.
+    /// </summary>
+    /// <param name="value">The boolean value to be reversed.</param>
+    /// <returns>
+    ///     <c>true</c> if <paramref name="value" /> is <c>false</c>;
+    ///     otherwise, <c>false</c> if <paramref name="value" /> is <c>true</c>.
+    /// </returns>
+    public static bool BoolReverse(bool value)
+    {
+        return !value;
+    }
+
+    /// <summary>
+    ///     Converts a boolean value to its integer representation.
+    /// </summary>
+    /// <param name="value">The boolean value to convert.</param>
+    /// <returns>Returns 1 if <paramref name="value" /> is <c>true</c>, otherwise returns 0.</returns>
+    public static int BoolToInt(bool value)
+    {
+        return value ? 1 : 0;
+    }
+
+    /// <summary>
+    ///     Converts a boolean value to its string representation.
+    /// </summary>
+    /// <param name="value">The boolean value to convert.</param>
+    /// <returns>
+    ///     A string representation of the boolean value: "true" if the value is <c>true</c>,
+    ///     or "false" if the value is <c>false</c>.
+    /// </returns>
+    public static string BoolToString(bool value)
+    {
+        return value ? "true" : "false";
+    }
+
+    /// <summary>
+    ///     Converts an integer value to its boolean equivalent.
+    /// </summary>
+    /// <param name="value">
+    ///     The integer value to convert. Any non-zero value will be interpreted as <c>true</c>,
+    ///     while zero will be interpreted as <c>false</c>.
+    /// </param>
+    /// <returns>
+    ///     <c>true</c> if <paramref name="value" /> is non-zero; otherwise, <c>false</c>.
+    /// </returns>
+    public static bool IntToBool(int value)
+    {
+        return value is > 0 or < 0;
+    }
+
+    /// <summary>
+    ///     Converts a list of elements into a single string, with elements separated by a default delimiter.
+    /// </summary>
+    /// <typeparam name="T">The type of elements in the list.</typeparam>
+    /// <param name="list">The list of elements to be converted into a string.</param>
+    /// <returns>
+    ///     A string representation of the list, where each element is separated by a semicolon (";").
+    ///     If the list is <c>null</c>, an empty string is returned.
+    /// </returns>
+    public static string ListToString<T>(List<T> list)
+    {
+        return ListToString(list, ";");
+    }
+
+    /// <summary>
+    ///     Converts a list of elements to a single string, with elements separated by a specified delimiter.
+    /// </summary>
+    /// <typeparam name="T">The type of elements in the list.</typeparam>
+    /// <param name="list">
+    ///     The list of elements to convert to a string. If the list is <c>null</c>, an empty string is
+    ///     returned.
+    /// </param>
+    /// <param name="delimiter">The string used to separate the elements in the resulting string.</param>
+    /// <returns>
+    ///     A string representation of the list, with elements separated by the specified delimiter.
+    ///     If the list is empty or <c>null</c>, an empty string is returned.
+    /// </returns>
+    public static string ListToString<T>(List<T> list, string delimiter)
+    {
+        var empty = string.Empty;
+        if (list == null) return empty;
+        var enumerator = (IEnumerator)list.GetType().GetMethod("GetEnumerator")?.Invoke(list, null);
+        while (enumerator != null && enumerator.MoveNext())
+            if (enumerator.Current != null)
+                empty = string.Concat(empty, enumerator.Current.ToString(), delimiter);
+
+        return empty;
+    }
+    
 }

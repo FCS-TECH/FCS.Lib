@@ -1,4 +1,4 @@
-﻿// // ***********************************************************************
+// // ***********************************************************************
 // // Solution         : Inno.Api.v2
 // // Assembly         : FCS.Lib.Utility
 // // Filename         : IRepositoryEx.cs
@@ -208,7 +208,14 @@ public interface IRepositoryEx<TEntity> where TEntity : class
     IQueryable<TEntity> Find(Expression<Func<TEntity, bool>> predicate);
 
     /// <summary>
+    /// Retrieves all entities of type <typeparamref name="TEntity" /> from the repository.
     /// </summary>
-    /// <returns></returns>
+    /// <remarks>
+    /// This method returns an <see cref="IQueryable{TEntity}" />, allowing for further filtering,
+    /// sorting, and querying operations to be performed on the data.
+    /// </remarks>
+    /// <returns>
+    /// An <see cref="IQueryable{TEntity}" /> representing all entities in the repository.
+    /// </returns>
     IQueryable<TEntity> All();
 }

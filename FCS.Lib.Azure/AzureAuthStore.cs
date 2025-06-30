@@ -1,13 +1,14 @@
-﻿// ***********************************************************************
-// Assembly         : FCS.Lib.Azure
-// Author           : 
-// Created          : 2023 10 02 13:17
-// 
-// Last Modified By : root
-// Last Modified On : 2023 10 02 15:24
 // ***********************************************************************
-// <copyright file="AzureAuthStore.cs" company="FCS">
-//     Copyright (C) 2023-2023 FCS Frede's Computer Services.
+// Assembly         : Inno.Business
+// Filename         : AzureAuthStore.cs
+// Author           : Frede Hundewadt
+// Created          : 2025 03 05 08:03
+// 
+// Last Modified By :
+// Last Modified On : 2025 03 06 10:03
+// ***********************************************************************
+// <copyright company="FCS">
+//     Copyright (C) 2025-2025 FCS Frede's Computer Service.
 //     This program is free software: you can redistribute it and/or modify
 //     it under the terms of the GNU Affero General Public License as
 //     published by the Free Software Foundation, either version 3 of the
@@ -24,68 +25,25 @@
 // <summary></summary>
 // ***********************************************************************
 
-namespace FCS.Lib.Azure;
+namespace Inno.Business.Azure;
 
-public class AzureAuthStore
+public class AzureAuthStore(
+    string azureLoginUrl,
+    string azureOAuthEndpoint,
+    string azureTenantId,
+    string azureClientId,
+    string azureGrantType,
+    string azureSecret,
+    string azureLoginScope)
 {
-    /// <summary>
-    ///     Azure Auth Store Constructor
-    /// </summary>
-    /// <param name="azureLoginUrl"></param>
-    /// <param name="azureOAuthEndpoint"></param>
-    /// <param name="azureTenantId"></param>
-    /// <param name="azureClientId"></param>
-    /// <param name="azureGrantType"></param>
-    /// <param name="azureClientSecret"></param>
-    /// <param name="azureLoginScope"></param>
-    public AzureAuthStore(
-        string azureLoginUrl, string azureOAuthEndpoint, string azureTenantId,
-        string azureClientId, string azureGrantType, string azureClientSecret,
-        string azureLoginScope)
-    {
-        AzureLoginUrl = azureLoginUrl;
-        AzureOAuthEndpoint = azureOAuthEndpoint;
-        AzureTenantId = azureTenantId;
-        AzureClientId = azureClientId;
-        AzureGrantType = azureGrantType;
-        AzureClientSecret = azureClientSecret;
-        AzureLoginScope = azureLoginScope;
-    }
+    protected string AzureLoginUrl { get; set; } = azureLoginUrl;
+    protected string AzureOAuthEndpoint { get; set; } = azureOAuthEndpoint;
+    protected string AzureTenantId { get; } = azureTenantId;
+    public string AzureClientId { get; } = azureClientId;
+    public string AzureGrantType { get; } = azureGrantType;
+    public string AzureSecret { get; } = azureSecret;
+    public string AzureLoginScope { get; } = azureLoginScope;
 
-    /// <summary>
-    ///     Azure Client Id
-    /// </summary>
-    public string AzureClientId { get; }
-
-    /// <summary>
-    ///     Azure Client Secret
-    /// </summary>
-    public string AzureClientSecret { get; }
-
-    /// <summary>
-    ///     Azure Grant Type
-    /// </summary>
-    public string AzureGrantType { get; }
-
-    /// <summary>
-    ///     Azure Login Scope
-    /// </summary>
-    public string AzureLoginScope { get; }
-
-    /// <summary>
-    ///     Azure Login Url
-    /// </summary>
-    protected string AzureLoginUrl { get; set; }
-
-    /// <summary>
-    ///     Azure OAuth Endpoint
-    /// </summary>
-    protected string AzureOAuthEndpoint { get; set; }
-
-    /// <summary>
-    ///     Azure Tenant Id
-    /// </summary>
-    protected string AzureTenantId { get; }
 
     public string AzureTokenEndpoint()
     {

@@ -1,7 +1,7 @@
-﻿// // ***********************************************************************
+// // ***********************************************************************
 // // Solution         : Inno.Api.v2
 // // Assembly         : FCS.Lib.Utility
-// // Filename         : Generators.cs
+// // Filename         : StringGenerator.cs
 // // Created          : 2025-01-03 14:01
 // // Last Modified By : dev
 // // Last Modified On : 2025-01-04 11:01
@@ -34,23 +34,35 @@ namespace FCS.Lib.Utility;
 /// <summary>
 ///     Provides utility methods for generating various types of random strings, numbers, and other data.
 /// </summary>
-public static class Generators
+public static class StringGenerator
 {
     /// <summary>
     ///     Generates a short URL string with a default length of 8 characters.
     /// </summary>
     /// <returns>A randomly generated short URL string.</returns>
-    public static string ShortUrlGenerator()
+    public static string GenerateShortUrl()
     {
-        return ShortUrlGenerator(8);
+        return GenerateShortUrl(8);
     }
 
 
     /// <summary>
+    /// Generates a random short URL string with the specified length.
     /// </summary>
-    /// <param name="length"></param>
-    /// <returns></returns>
-    public static string ShortUrlGenerator(int length)
+    /// <param name="length">
+    /// The desired length of the generated short URL. Must be a positive integer.
+    /// </param>
+    /// <returns>
+    /// A randomly generated short URL string containing a mix of uppercase letters, lowercase letters, and numeric characters.
+    /// </returns>
+    /// <remarks>
+    /// This method ensures that the generated short URL contains characters from different groups 
+    /// (uppercase letters, lowercase letters, and numeric characters) to enhance randomness and uniqueness.
+    /// </remarks>
+    /// <exception cref="ArgumentOutOfRangeException">
+    /// Thrown if the <paramref name="length"/> parameter is less than or equal to zero.
+    /// </exception>
+    public static string GenerateShortUrl(int length)
     {
         // <remarks>derived from https://sourceforge.net/projects/shorturl-dotnet/</remarks>
         const string charsLower = "abcdefghijklmnopqrstuvwxyz";
@@ -166,17 +178,17 @@ public static class Generators
 
 
     /// <summary>
-    ///     Generates a username based on the specified options or default settings.
+    ///     Generates a username based on the specified strOptions or default settings.
     /// </summary>
-    /// <param name="options">
-    ///     An instance of <see cref="StringOptions" /> specifying the rules for generating the username.
-    ///     If <c>null</c>, default options will be used, requiring a length of 16 characters,
+    /// <param name="strOptions">
+    ///     An instance of <see cref="StringGeneratorOptions" /> specifying the rules for generating the username.
+    ///     If <c>null</c>, default strOptions will be used, requiring a length of 16 characters,
     ///     at least one digit, one lowercase letter, one uppercase letter, and four unique characters.
     /// </param>
-    /// <returns>A randomly generated username string that adheres to the specified or default options.</returns>
-    public static string GenerateUsername(StringOptions options = null)
+    /// <returns>A randomly generated username string that adheres to the specified or default strOptions.</returns>
+    public static string GenerateUsername(StringGeneratorOptions strOptions = null)
     {
-        options ??= new StringOptions
+        strOptions ??= new StringGeneratorOptions
         {
             RequiredLength = 16,
             RequireDigit = true,
@@ -186,16 +198,16 @@ public static class Generators
             RequireNonLetterOrDigit = false,
             RequireNonAlphanumeric = false
         };
-        return GenerateRandomString(options);
+        return GenerateRandomString(strOptions);
     }
 
 
     /// <summary>
-    ///     Generates a random password based on the specified options or default settings.
+    ///     Generates a random password based on the specified strOptions or default settings.
     /// </summary>
-    /// <param name="options">
-    ///     An instance of <see cref="StringOptions" /> that specifies the password requirements.
-    ///     If <c>null</c>, default options will be used, which include:
+    /// <param name="strOptions">
+    ///     An instance of <see cref="StringGeneratorOptions" /> that specifies the password requirements.
+    ///     If <c>null</c>, default strOptions will be used, which include:
     ///     <list type="bullet">
     ///         <item>RequiredLength: 16</item>
     ///         <item>RequireDigit: true</item>
@@ -209,9 +221,9 @@ public static class Generators
     /// <returns>
     ///     A randomly generated password that satisfies the provided or default requirements.
     /// </returns>
-    public static string GeneratePassword(StringOptions options = null)
+    public static string GeneratePassword(StringGeneratorOptions strOptions = null)
     {
-        options ??= new StringOptions
+        strOptions ??= new StringGeneratorOptions
         {
             RequiredLength = 16,
             RequireDigit = true,
@@ -221,7 +233,7 @@ public static class Generators
             RequireNonLetterOrDigit = false,
             RequireNonAlphanumeric = false
         };
-        return GenerateRandomString(options);
+        return GenerateRandomString(strOptions);
     }
 
 
@@ -264,22 +276,22 @@ public static class Generators
 
 
     /// <summary>
-    ///     Generates a random string based on the specified options.
+    ///     Generates a random string based on the specified strOptions.
     /// </summary>
-    /// <param name="options">
-    ///     The <see cref="StringOptions" /> object that specifies the requirements for the generated string.
-    ///     If not provided, default options will be used.
+    /// <param name="strOptions">
+    ///     The <see cref="StringGeneratorOptions" /> object that specifies the requirements for the generated string.
+    ///     If not provided, default strOptions will be used.
     /// </param>
     /// <returns>
     ///     A randomly generated string that meets the specified criteria.
     /// </returns>
     /// <remarks>
     ///     The generated string can include uppercase letters, lowercase letters, digits, and non-alphanumeric characters,
-    ///     depending on the provided options.
+    ///     depending on the provided strOptions.
     /// </remarks>
-    public static string GenerateRandomString(StringOptions options = null)
+    public static string GenerateRandomString(StringGeneratorOptions strOptions = null)
     {
-        options ??= new StringOptions
+        strOptions ??= new StringGeneratorOptions
         {
             RequiredLength = 16,
             RequireDigit = true,
@@ -303,26 +315,26 @@ public static class Generators
 
         var chars = new List<char>();
 
-        if (options.RequireUppercase)
+        if (strOptions.RequireUppercase)
             chars.Insert(rand.Next(0, chars.Count),
                 randomChars[0][rand.Next(0, randomChars[0].Length)]);
 
-        if (options.RequireLowercase)
+        if (strOptions.RequireLowercase)
             chars.Insert(rand.Next(0, chars.Count),
                 randomChars[1][rand.Next(0, randomChars[1].Length)]);
 
-        if (options.RequireDigit)
+        if (strOptions.RequireDigit)
             chars.Insert(rand.Next(0, chars.Count),
                 randomChars[2][rand.Next(0, randomChars[2].Length)]);
 
-        if (options.RequireNonAlphanumeric)
+        if (strOptions.RequireNonAlphanumeric)
             chars.Insert(rand.Next(0, chars.Count),
                 randomChars[3][rand.Next(0, randomChars[3].Length)]);
 
         var rcs = randomChars[rand.Next(0, randomChars.Length)];
         for (var i = chars.Count;
-             i < options.RequiredLength
-             || chars.Distinct().Count() < options.RequiredUniqueChars;
+             i < strOptions.RequiredLength
+             || chars.Distinct().Count() < strOptions.RequiredUniqueChars;
              i++)
             chars.Insert(rand.Next(0, chars.Count),
                 rcs[rand.Next(0, rcs.Length)]);

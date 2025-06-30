@@ -48,24 +48,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="StringUtils.cs" />
+    <Compile Include="TimestampHash.cs" />
     <Compile Include="Ean13Validator.cs" />
     <Compile Include="ExtensionsEx.cs" />
-    <Compile Include="Generators.cs" />
+    <Compile Include="StringGenerator.cs" />
     <Compile Include="GuidGenerator.cs" />
-    <Compile Include="GuidVersion.cs" />
-    <Compile Include="IAsyncReadonlyRepo.cs" />
-    <Compile Include="IRepository.cs" />
+    <Compile Include="IRepositoryBase.cs" />
     <Compile Include="IRepositoryEx.cs" />
-    <Compile Include="Mogrify.cs" />
+    <Compile Include="Misc.cs" />
+    <Compile Include="Transform.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>AssemblyInfo.tt</DependentUpon>
     </Compile>
-    <Compile Include="StringChecker.cs" />
+    <Compile Include="Sanitizers.cs" />
     <Compile Include="TaxIdFormatValidator.cs" />
     <Compile Include="QueryHelper.cs" />
-    <Compile Include="StringOptions.cs" />
+    <Compile Include="StringGeneratorOptions.cs" />
     <Compile Include="Squid.cs" />
   </ItemGroup>
   <ItemGroup>

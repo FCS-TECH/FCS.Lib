@@ -40,7 +40,7 @@
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="BasicAuth.cs" />
+    <Compile Include="Models\BasicAuth.cs" />
     <Compile Include="Models\HttpResponseView.cs" />
     <Compile Include="Models\Link.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">

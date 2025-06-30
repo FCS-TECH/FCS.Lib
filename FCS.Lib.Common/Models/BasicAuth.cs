@@ -1,4 +1,4 @@
-﻿// ***********************************************************************
+// ***********************************************************************
 //  Solution         : Inno.Api.v2
 //  Assembly         : FCS.Lib.Common
 //  Filename         : BasicAuth.cs
@@ -27,7 +27,7 @@
 using System;
 using System.Text;
 
-namespace FCS.Lib.Common;
+namespace FCS.Lib.Common.Models;
 
 /// <summary>
 ///     Represents a utility class for handling basic authentication credentials.

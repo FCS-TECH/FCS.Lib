@@ -1,13 +1,14 @@
-// ***********************************************************************
-// Assembly         : FCS.Lib.Azure
-// Author           : 
-// Created          : 2023 10 02 13:17
+﻿// ***********************************************************************
+// Assembly         : Inno.Business
+// Filename         : AzureTokenDto.cs
+// Author           : Frede Hundewadt
+// Created          : 2023 12 05 09:34
 // 
 // Last Modified By : root
-// Last Modified On : 2023 10 02 15:24
+// Last Modified On : 2024 04 11 12:59
 // ***********************************************************************
-// <copyright file="AzureTokenDto.cs" company="FCS">
-//     Copyright (C) 2023-2023 FCS Frede's Computer Services.
+// <copyright company="FCS">
+//     Copyright (C) 2023-2024 FCS Frede's Computer Service.
 //     This program is free software: you can redistribute it and/or modify
 //     it under the terms of the GNU Affero General Public License as
 //     published by the Free Software Foundation, either version 3 of the
@@ -24,31 +25,15 @@
 // <summary></summary>
 // ***********************************************************************
 
-namespace FCS.Lib.Azure;
+using System.Text.Json.Serialization;
 
-public class AzureTokenDto
+namespace Inno.Business.Azure
 {
-    /// <summary>
-    ///     Token Type
-    /// </summary>
-    [JsonPropertyName("token_type")]
-    public string TokenType { get; set; }
-
-    /// <summary>
-    ///     Expires In
-    /// </summary>
-    [JsonPropertyName("expires_in")]
-    public long ExpiresIn { get; set; }
-
-    /// <summary>
-    ///     Ext Expires In
-    /// </summary>
-    [JsonPropertyName("ext_expires_in")]
-    public long ExtExpiresIn { get; set; }
-
-    /// <summary>
-    ///     Access Token
-    /// </summary>
-    [JsonPropertyName("access_token")]
-    public string AccessToken { get; set; }
+    public class AzureTokenDto
+    {
+        [JsonPropertyName("token_type")] public string TokenType { get; set; }
+        [JsonPropertyName("expires_in")] public long ExpiresIn { get; set; }
+        [JsonPropertyName("ext_expires_in")] public long ExtExpiresIn { get; set; }
+        [JsonPropertyName("access_token")] public string AccessToken { get; set; }
+    }
 }

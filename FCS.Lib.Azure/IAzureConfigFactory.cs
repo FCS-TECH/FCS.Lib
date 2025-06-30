@@ -1,6 +1,6 @@
 // ***********************************************************************
 // Assembly         : Inno.Business
-// Filename         : IAzureTokenFetcher.cs
+// Filename         : IAzureConfigFactory.cs
 // Author           : Frede Hundewadt
 // Created          : 2025 03 27 13:03
 // 
@@ -25,29 +25,33 @@
 // <summary></summary>
 // ***********************************************************************
 
-using System.Threading.Tasks;
-
 namespace Inno.Business.Azure;
 
-/// <summary>
-///     Defines a contract for fetching Azure authentication tokens.
-/// </summary>
-/// <remarks>
-///     Implementations of this interface are responsible for retrieving Azure tokens
-///     that include details such as the token type, access token, and expiration information.
-/// </remarks>
-public interface IAzureTokenFetcher
+public interface IAzureConfigFactory
 {
     /// <summary>
-    ///     Fetches an Azure authentication token asynchronously.
+    ///     Retrieves the Azure configuration store for a specific country.
     /// </summary>
-    /// <remarks>
-    ///     This method retrieves an <see cref="AzureToken" /> object, which contains
-    ///     details such as the token type, access token, and expiration information.
-    /// </remarks>
+    /// <param name="country">
+    ///     The country code or name for which the Azure configuration store is to be retrieved.
+    /// </param>
     /// <returns>
-    ///     A task that represents the asynchronous operation. The task result contains
-    ///     an <see cref="AzureToken" /> object with the fetched token details.
+    ///     An instance of <see cref="AzureConfigStore" /> containing the Azure configuration details
+    ///     specific to the provided country.
     /// </returns>
-    Task<AzureToken> FetchAzureToken();
+    /// <exception cref="System.IO.FileNotFoundException">
+    ///     Thrown when the settings file required to retrieve the configuration is not found.
+    /// </exception>
+    AzureConfigStore GetAzureConfigStore(string country);
+
+    /// <summary>
+    ///     Retrieves the Azure authentication configuration store.
+    /// </summary>
+    /// <returns>
+    ///     An instance of <see cref="AzureAuthStore" /> containing Azure authentication parameters.
+    /// </returns>
+    /// <exception cref="System.IO.FileNotFoundException">
+    ///     Thrown when the settings file required to retrieve the configuration is not found.
+    /// </exception>
+    AzureAuthStore GetAzureAuthStore();
 }

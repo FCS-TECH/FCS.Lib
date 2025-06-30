@@ -1,4 +1,4 @@
-﻿// // ***********************************************************************
+// // ***********************************************************************
 // // Solution         : Inno.Api.v2
 // // Assembly         : FCS.Lib.Utility
 // // Filename         : IAsyncReadonlyRepo.cs
@@ -37,7 +37,7 @@ namespace FCS.Lib.Utility;
 ///     <typeparamref name="TEntity" />.
 /// </summary>
 /// <typeparam name="TEntity">The type of the entity managed by the repository. Must be a reference type.</typeparam>
-public interface IAsyncReadonlyRepo<TEntity> where TEntity : class
+public interface IRepositoryBase<TEntity> where TEntity : class
 {
     /// <summary>
     ///     Retrieves all entities of type <typeparamref name="TEntity" /> as an <see cref="IQueryable{T}" />.
@@ -125,9 +125,14 @@ public interface IAsyncReadonlyRepo<TEntity> where TEntity : class
 
 
     /// <summary>
+    /// Determines whether any entities in the repository satisfy the specified condition.
     /// </summary>
-    /// <param name="predicate"></param>
-    /// <returns></returns>
+    /// <param name="predicate">
+    /// An expression that defines the condition to test against the entities in the repository.
+    /// </param>
+    /// <returns>
+    /// <c>true</c> if any entities in the repository satisfy the specified condition; otherwise, <c>false</c>.
+    /// </returns>
     bool Any(Expression<Func<TEntity, bool>> predicate);
 
 

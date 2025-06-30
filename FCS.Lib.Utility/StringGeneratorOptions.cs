@@ -1,7 +1,7 @@
-﻿// // ***********************************************************************
+// // ***********************************************************************
 // // Solution         : Inno.Api.v2
 // // Assembly         : FCS.Lib.Utility
-// // Filename         : StringOptions.cs
+// // Filename         : StringGeneratorOptions.cs
 // // Created          : 2025-01-03 14:01
 // // Last Modified By : dev
 // // Last Modified On : 2025-01-04 12:01
@@ -34,7 +34,7 @@ namespace FCS.Lib.Utility;
 ///     the inclusion of specific character types (e.g., digits, lowercase, uppercase, non-alphanumeric characters),
 ///     and the minimum number of unique characters.
 /// </remarks>
-public class StringOptions
+public class StringGeneratorOptions
 {
     /// <summary>
     ///     Gets or sets the required minimum length for the generated string.
@@ -45,7 +45,7 @@ public class StringOptions
     /// <remarks>
     ///     This property is used to enforce a specific length constraint on generated strings,
     ///     such as passwords or usernames. The default value may vary depending on the context
-    ///     in which the <see cref="StringOptions" /> class is used.
+    ///     in which the <see cref="StringGeneratorOptions" /> class is used.
     /// </remarks>
     public int RequiredLength { get; set; }
 

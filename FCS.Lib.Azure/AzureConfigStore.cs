@@ -1,13 +1,14 @@
-﻿// ***********************************************************************
-// Assembly         : FCS.Lib.Azure
-// Author           : 
-// Created          : 2023 10 02 13:17
-// 
-// Last Modified By : root
-// Last Modified On : 2023 10 02 15:24
 // ***********************************************************************
-// <copyright file="AzureConfigStore.cs" company="FCS">
-//     Copyright (C) 2023-2023 FCS Frede's Computer Services.
+// Assembly         : Inno.Business
+// Filename         : AzureConfigStore.cs
+// Author           : Frede Hundewadt
+// Created          : 2025 03 06 08:03
+// 
+// Last Modified By :
+// Last Modified On : 2025 03 06 10:03
+// ***********************************************************************
+// <copyright company="FCS">
+//     Copyright (C) 2025-2025 FCS Frede's Computer Service.
 //     This program is free software: you can redistribute it and/or modify
 //     it under the terms of the GNU Affero General Public License as
 //     published by the Free Software Foundation, either version 3 of the
@@ -24,91 +25,35 @@
 // <summary></summary>
 // ***********************************************************************
 
-namespace FCS.Lib.Azure;
+namespace Inno.Business.Azure;
 
-public class AzureConfigStore
+public class AzureConfigStore(
+    string baseUrl,
+    string tenantId,
+    string environment,
+    string apiPublisher,
+    string apiGroup,
+    string apiVersion,
+    string ledgerId,
+    string oDataVersion)
 {
-    /// <summary>
-    ///     Azure Config Store Constructor
-    /// </summary>
-    /// <param name="baseUrl"></param>
-    /// <param name="tenantId"></param>
-    /// <param name="environment"></param>
-    /// <param name="apiPublisher"></param>
-    /// <param name="apiGroup"></param>
-    /// <param name="apiVersion"></param>
-    /// <param name="ledgerId"></param>
-    /// <param name="oDataVersion"></param>
-    public AzureConfigStore(
-        string baseUrl, string tenantId, string environment,
-        string apiPublisher, string apiGroup, string apiVersion,
-        string ledgerId, string oDataVersion)
+    protected string BaseUrl { get; set; } = baseUrl;
+    protected string TenantId { get; } = tenantId;
+    protected string Environment { get; set; } = environment;
+    protected string ApiPublisher { get; set; } = apiPublisher;
+    protected string ApiGroup { get; set; } = apiGroup;
+    protected string ApiVersion { get; set; } = apiVersion;
+    protected string LedgerId { get; set; } = ledgerId;
+    protected string ODataVersion { get; set; } = oDataVersion;
+
+
+    public string ClientApiEndpoint()
     {
-        BaseUrl = baseUrl;
-        TenantId = tenantId;
-        Environment = environment;
-        ApiPublisher = apiPublisher;
-        ApiGroup = apiGroup;
-        ApiVersion = apiVersion;
-        LedgerId = ledgerId;
-        ODataVersion = oDataVersion;
+        return $"{BaseUrl}/{TenantId}/{Environment}/api/{ApiPublisher}/{ApiGroup}/{ApiVersion}/companies({LedgerId})";
     }
 
-    /// <summary>
-    ///     Azure Api Group
-    /// </summary>
-    protected string ApiGroup { get; set; }
 
-    /// <summary>
-    ///     Azure Api
-    /// </summary>
-    protected string ApiPublisher { get; set; }
-
-    /// <summary>
-    ///     Azure Api Group
-    /// </summary>
-    protected string ApiVersion { get; set; }
-
-    /// <summary>
-    ///     Azure Base Url
-    /// </summary>
-    protected string BaseUrl { get; set; }
-
-    /// <summary>
-    ///     Azure Ledger Id
-    /// </summary>
-    protected string LedgerId { get; set; }
-
-    /// <summary>
-    ///     Azure ODate Version
-    /// </summary>
-    protected string ODataVersion { get; set; }
-
-    /// <summary>
-    ///     Azure Environment
-    /// </summary>
-    protected string Environment { get; set; }
-
-    /// <summary>
-    ///     Azure Tenant Id
-    /// </summary>
-    protected string TenantId { get; }
-
-    /// <summary>
-    ///     Azure Client Api Endpoint
-    /// </summary>
-    /// <returns></returns>
-    public string AzureClientApiEndpoint()
-    {
-        return
-            $"{BaseUrl}/{TenantId}/{Environment}/api/{ApiPublisher}/{ApiGroup}/{ApiVersion}/companies({LedgerId})";
-    }
-
-    /// <summary>
-    ///     Azure OAuth Endpoint
-    /// </summary>
-    /// <returns></returns>
-    public string AzureClientOAuthEndpoint()
+    public string ClientOAuthEndpoint()
     {
         return $"{BaseUrl}/{TenantId}/{Environment}/{ODataVersion}/Company('{LedgerId}')";
     }

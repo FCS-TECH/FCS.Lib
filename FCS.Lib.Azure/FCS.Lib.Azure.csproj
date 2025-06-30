@@ -31,13 +31,14 @@
   <ItemGroup>
     <Compile Include="AzureAuthStore.cs" />
     <Compile Include="AzureConfigStore.cs" />
+    <Compile Include="AzureEndpointStore.cs" />
     <Compile Include="AzureToken.cs" />
     <Compile Include="AzureTokenDto.cs" />
-    <Compile Include="AzureTokenFetcher.cs" />
+    <Compile Include="AzureTokenService.cs" />
     <Compile Include="AzureTokenHttpRequest.cs" />
     <Compile Include="AzureTokenMapper.cs" />
     <Compile Include="IAzureConfigProvider.cs" />
-    <Compile Include="IAzureTokenFetcher.cs" />
+    <Compile Include="IAzureTokenService.cs" />
     <Compile Include="IAzureTokenProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -78,8 +79,20 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\..\Inno.Api.Net\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="System">
+      <HintPath>..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\System.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net">
+      <HintPath>..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\System.Net.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+      <HintPath>..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\System.Net.Http.dll</HintPath>
+    </Reference>
     <Reference Include="System.Text.Json">
       <HintPath>..\..\..\..\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\PublicAssemblies\System.Text.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web">
+      <HintPath>..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\System.Web.dll</HintPath>
     </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

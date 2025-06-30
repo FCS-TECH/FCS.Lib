@@ -1,14 +1,14 @@
 // ***********************************************************************
-// Assembly         : Inno.Azure
-// Filename         : AzureTokenFetcher.cs
+// Assembly         : Inno.Api
+// Filename         : IAzureTokenFetcher.cs
 // Author           : Frede Hundewadt
-// Created          : 2025 03 05 08:03
+// Created          : 2023 12 05 09:34
 // 
-// Last Modified By :
-// Last Modified On : 2025 03 06 10:03
+// Last Modified By : root
+// Last Modified On : 2024 05 05 14:47
 // ***********************************************************************
 // <copyright company="FCS">
-//     Copyright (C) 2025-2025 FCS Frede's Computer Service.
+//     Copyright (C) 2023-2024 FCS Frede's Computer Service.
 //     This program is free software: you can redistribute it and/or modify
 //     it under the terms of the GNU Affero General Public License as
 //     published by the Free Software Foundation, either version 3 of the
@@ -26,19 +26,32 @@
 // ***********************************************************************
 
 using System.Threading.Tasks;
-using Inno.Business.Abstractions;
-using Inno.Business.Azure;
-using Inno.Business.Models.Common;
 
-namespace Inno.Api.Azure;
-
-public class AzureTokenFetcher(AzureAuthStore config) : IAzureTokenFetcher
+namespace Inno.Business.Azure
 {
-    public async Task<AzureToken> FetchAzureToken()
+    /// <summary>
+    ///     Interface IAzureTokenFetcher
+    /// </summary>
+    public interface IAzureTokenService
     {
-        var result = await AzureTokenHttpRequest.RequestTokenAsync(config).ConfigureAwait(true);
-        return !result.IsSuccessStatusCode
-            ? new AzureToken { Expires = -1 }
-            : new AzureTokenMapper().MapAzureToken(result.Message);
+        /// <summary>
+        ///     Get access token
+        /// </summary>
+        /// <returns>Access token as async task</returns>
+        Task<string> GetAccessToken();
+
+
+        /// <summary>
+        ///     Is token valid
+        /// </summary>
+        /// <returns>true if valid otherwise false</returns>
+        bool TokenIsValid();
+
+        /// <summary>
+        ///     Return if token is valid
+        /// </summary>
+        /// <param name="timestamp"></param>
+        /// <returns>true/false</returns>
+        bool TokenHasExpired(long timestamp);
     }
 }

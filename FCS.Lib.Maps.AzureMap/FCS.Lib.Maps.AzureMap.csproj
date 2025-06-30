@@ -49,7 +49,9 @@
   <ItemGroup>
     <Compile Include="AtlasRequestService.cs" />
     <Compile Include="IAtlasRequestService.cs" />
+    <Compile Include="Models\MapDefaults.cs" />
     <Compile Include="Models\MapEntryPoint.cs" />
+    <Compile Include="Models\MapFromAddress.cs" />
     <Compile Include="Models\MapResultFromPosition.cs" />
     <Compile Include="Models\MapServer.cs" />
     <Compile Include="Models\MapResultFromAddress.cs" />

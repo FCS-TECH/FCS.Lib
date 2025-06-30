@@ -1,4 +1,4 @@
-﻿// // ***********************************************************************
+// // ***********************************************************************
 // // Solution         : Inno.Api.v2
 // // Assembly         : FCS.Lib.Utility
 // // Filename         : Ean13Validator.cs
@@ -29,15 +29,22 @@ using System;
 namespace FCS.Lib.Utility;
 
 /// <summary>
+/// Provides functionality for validating and generating EAN-13 barcodes.
 /// </summary>
 public class Ean13Validator
 {
     private const int Size = 12;
 
     /// <summary>
+    /// Validates whether the provided EAN-13 barcode string is valid.
     /// </summary>
-    /// <param name="number"></param>
-    /// <returns></returns>
+    /// <param name="number">
+    /// A string representing the EAN-13 barcode to validate. 
+    /// The string must be 13 characters long and contain only numeric characters.
+    /// </param>
+    /// <returns>
+    /// <c>true</c> if the provided barcode is valid; otherwise, <c>false</c>.
+    /// </returns>
     public static bool Validate(string number)
     {
         if (number.Length != Size + 1)

@@ -1,13 +1,14 @@
 ﻿// ***********************************************************************
-// Assembly         : FCS.Lib.Azure
-// Author           : 
-// Created          : 2023 10 02 13:17
+// Assembly         : Inno.Business
+// Filename         : AzureToken.cs
+// Author           : Frede Hundewadt
+// Created          : 2023 12 05 09:34
 // 
 // Last Modified By : root
-// Last Modified On : 2023 10 02 15:24
+// Last Modified On : 2024 04 11 12:59
 // ***********************************************************************
-// <copyright file="AzureToken.cs" company="FCS">
-//     Copyright (C) 2023-2023 FCS Frede's Computer Services.
+// <copyright company="FCS">
+//     Copyright (C) 2023-2024 FCS Frede's Computer Service.
 //     This program is free software: you can redistribute it and/or modify
 //     it under the terms of the GNU Affero General Public License as
 //     published by the Free Software Foundation, either version 3 of the
@@ -24,32 +25,18 @@
 // <summary></summary>
 // ***********************************************************************
 
-namespace FCS.Lib.Azure;
-
-public class AzureToken
+namespace Inno.Business.Azure
 {
-    /// <summary>
-    ///     Token Type
-    /// </summary>
-    public string TokenType { get; set; } = "";
-
-    /// <summary>
-    ///     Access Token
-    /// </summary>
-    public string AccessToken { get; set; } = "";
-
-    /// <summary>
-    ///     Expires
-    /// </summary>
-    public long Expires { get; set; }
-
-    /// <summary>
-    ///     Token Has Expired
-    /// </summary>
-    /// <param name="timestamp"></param>
-    /// <returns></returns>
-    public bool HasExpired(long timestamp)
+    public class AzureToken
     {
-        return timestamp > Expires;
+        public string TokenType { get; set; } = "";
+        public string AccessToken { get; set; } = "";
+        public long Expires { get; set; }
+
+
+        public bool HasExpired(long timestamp)
+        {
+            return timestamp > Expires;
+        }
     }
 }

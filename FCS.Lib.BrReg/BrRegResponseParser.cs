@@ -1,4 +1,4 @@
-﻿// ***********************************************************************
+// ***********************************************************************
 // Assembly         : FCS.Lib.BrReg
 // Filename         : BrRegResponseParser.cs
 // Author           : Frede Hundewadt
@@ -75,11 +75,11 @@ public class BrRegResponseParser
     {
         try
         {
-            return content.Embedded.Entities;
+            return content.PageInfo.TotalElements == 0 ? [] : content.Embedded.Entities;
         }
         catch (Exception)
         {
-            return null;
+            return [];
         }
     }
 

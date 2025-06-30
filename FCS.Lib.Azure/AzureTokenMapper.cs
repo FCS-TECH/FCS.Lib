@@ -1,13 +1,14 @@
 // ***********************************************************************
-// Assembly         : FCS.Lib.Azure
-// Author           : 
-// Created          : 2023 10 02 13:17
+// Assembly         : Inno.Azure
+// Filename         : AzureTokenMapper.cs
+// Author           : Frede Hundewadt
+// Created          : 2023 12 05 09:34
 // 
 // Last Modified By : root
-// Last Modified On : 2023 10 02 15:24
+// Last Modified On : 2024 04 11 12:59
 // ***********************************************************************
-// <copyright file="AzureTokenMapper.cs" company="FCS">
-//     Copyright (C) 2023-2023 FCS Frede's Computer Services.
+// <copyright company="FCS">
+//     Copyright (C) 2023-2024 FCS Frede's Computer Service.
 //     This program is free software: you can redistribute it and/or modify
 //     it under the terms of the GNU Affero General Public License as
 //     published by the Free Software Foundation, either version 3 of the
@@ -25,26 +26,29 @@
 // ***********************************************************************
 
 using System;
+using System.Text.Json;
 using FCS.Lib.Utility;
-using Newtonsoft.Json;
+using Inno.Business.Azure;
+using Inno.Business.Models.Common;
 
-namespace FCS.Lib.Azure;
-
-public class AzureTokenMapper
+namespace Inno.Api.Azure
 {
-    public AzureToken MapAzureToken(string json)
+    public class AzureTokenMapper
     {
-        if (string.IsNullOrWhiteSpace(json))
-            throw new ArgumentNullException(nameof(json));
+        public AzureToken MapAzureToken(string json)
+        {
+            if (string.IsNullOrWhiteSpace(json))
+                throw new ArgumentNullException(nameof(json));
 
-        var token = JsonConvert.DeserializeObject<AzureTokenDto>(json);
-        return token == null
-            ? null
-            : new AzureToken
-            {
-                AccessToken = token.AccessToken,
-                Expires = Mogrify.CurrentDateTimeToTimeStamp() + token.ExtExpiresIn - 600,
-                TokenType = token.TokenType
-            };
+            var token = JsonSerializer.Deserialize<AzureTokenDto>(json);
+            return token == null
+                ? null
+                : new AzureToken
+                {
+                    AccessToken = token.AccessToken,
+                    Expires = Transform.CurrentDateTimeToTimeStamp() + token.ExtExpiresIn - 600,
+                    TokenType = token.TokenType
+                };
+        }
     }
 }

@@ -1,13 +1,14 @@
 ﻿// ***********************************************************************
-// Assembly         : FCS.Lib.Azure
-// Author           : 
-// Created          : 2023 10 02 13:17
+// Assembly         : Inno.Business
+// Filename         : AzureEndpointStore.cs
+// Author           : Frede Hundewadt
+// Created          : 2024 03 01 07:49
 // 
 // Last Modified By : root
-// Last Modified On : 2023 10 02 15:24
+// Last Modified On : 2024 04 11 12:59
 // ***********************************************************************
-// <copyright file="IAzureTokenProvider.cs" company="FCS">
-//     Copyright (C) 2023-2023 FCS Frede's Computer Services.
+// <copyright company="FCS">
+//     Copyright (C) 2024-2024 FCS Frede's Computer Service.
 //     This program is free software: you can redistribute it and/or modify
 //     it under the terms of the GNU Affero General Public License as
 //     published by the Free Software Foundation, either version 3 of the
@@ -24,25 +25,20 @@
 // <summary></summary>
 // ***********************************************************************
 
-using System.Threading.Tasks;
-
-namespace FCS.Lib.Azure;
-
-/// <summary>
-///     Interface IAzureTokenService
-/// </summary>
-public interface IAzureTokenProvider
+namespace Inno.Business.Azure
 {
-    /// <summary>
-    ///     Get access token
-    /// </summary>
-    /// <returns>Access token as async task</returns>
-    Task<string> GetAccessToken();
-
-    /// <summary>
-    ///     Return if token is valid
-    /// </summary>
-    /// <param name="timestamp"></param>
-    /// <returns>true/false</returns>
-    bool TokenHasExpired(long timestamp);
+    public class AzureEndpointStore
+    {
+        public string ApiCatalogItem { get; set; } = "";
+        public string ApiCatalogPrice { get; set; } = "";
+        public string ApiCompany { get; set; } = "";
+        public string ApiCrMemoHead { get; set; } = "";
+        public string ApiCrMemoLine { get; set; } = "";
+        public string ApiInvoiceHead { get; set; } = "";
+        public string ApiInvoiceLine { get; set; } = "";
+        public string ApiSalesRep { get; set; } = "";
+        public string ApiSalesHead { get; set; } = "";
+        public string ApiSalesLine { get; set; } = "";
+        public string OauthCustomer { get; set; } = "";
+    }
 }
