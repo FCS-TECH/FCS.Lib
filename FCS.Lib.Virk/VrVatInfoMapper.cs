@@ -24,7 +24,6 @@
 //  <summary></summary>
 //  ***********************************************************************
 
-using FCS.Lib.Common;
 using FCS.Lib.Common.Models;
 using FCS.Lib.Virk.Models;
 
