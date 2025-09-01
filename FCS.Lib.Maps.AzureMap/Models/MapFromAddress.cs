@@ -33,7 +33,7 @@ public class MapFromAddress : MapDefaults
     /// </summary>
     /// <remarks>
     ///     This property represents the street name component of an address.
-    ///     It is used alongside <see cref="StreetNumber" /> and other address details
+    ///     It is used alongside <see cref="HouseNumber" /> and other address details
     ///     to create a complete and structured address.
     /// </remarks>
     public string StreetName { get; set; } = "";
@@ -46,7 +46,7 @@ public class MapFromAddress : MapDefaults
     ///     It is used in conjunction with <see cref="StreetName" /> and other address components
     ///     to form a complete and structured address.
     /// </remarks>
-    public string StreetNumber { get; set; } = "";
+    public string HouseNumber { get; set; } = "";
 
     /// <summary>
     ///     Gets or sets the type of the address mapping request.

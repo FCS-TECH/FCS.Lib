@@ -127,7 +127,7 @@ public class AtlasRequestService : IAtlasRequestService
         sb.Append($"&countryCode={info.CountryCode}");
         sb.Append($"&postalCode={info.PostalCode}");
         sb.Append($"&streetName={info.StreetName}");
-        sb.Append($"&streetNumber={info.StreetNumber}");
+        sb.Append($"&streetNumber={info.HouseNumber}");
         var endpoint = sb.ToString();
 
         using var client = new HttpClient();
