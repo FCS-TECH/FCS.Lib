@@ -1,14 +1,13 @@
 ﻿// ***********************************************************************
-// Assembly         : FCS.Lib.BrReg
 // Filename         : BrLinks.cs
 // Author           : Frede Hundewadt
-// Created          : 2025 04 15 06:04
+// Created          : 2025 10 14 10:10
 // 
 // Last Modified By :
-// Last Modified On : 2025 04 15 06:04
+// Last Modified On : 2026 07 22 15:25
 // ***********************************************************************
 // <copyright company="FCS">
-//     Copyright (C) 2025-2025 FCS Frede's Computer Service.
+//     Copyright (C) 2025-2026 FCS Frede's Computer Service.
 //     This program is free software: you can redistribute it and/or modify
 //     it under the terms of the GNU Affero General Public License as
 //     published by the Free Software Foundation, either version 3 of the
@@ -49,7 +48,7 @@ public class BrLinks
     /// within a collection of resources.
     /// </remarks>
     public Link First { get; set; }
-    
+
     /// <summary>
     /// Gets or sets the link to the current resource.
     /// </summary>
@@ -60,7 +59,7 @@ public class BrLinks
     /// This property is typically used to provide a self-referential link in navigational structures.
     /// </remarks>
     public Link Self { get; set; }
-    
+
     /// <summary>
     /// Gets or sets the hyperlink to the next resource in a sequence.
     /// </summary>
@@ -71,7 +70,7 @@ public class BrLinks
     /// This property is typically used for pagination or navigating to the next set of resources.
     /// </remarks>
     public Link Next { get; set; }
-    
+
     /// <summary>
     /// Gets or sets the hyperlink representing the last navigational link in a collection.
     /// </summary>

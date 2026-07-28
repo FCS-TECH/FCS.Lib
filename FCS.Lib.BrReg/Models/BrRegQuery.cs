@@ -1,14 +1,13 @@
-﻿// ***********************************************************************
-// Assembly         : FCS.Lib.BrReg
+// ***********************************************************************
 // Filename         : BrRegQuery.cs
 // Author           : Frede Hundewadt
-// Created          : 2025 04 09 13:04
+// Created          : 2025 10 14 10:10
 // 
 // Last Modified By :
-// Last Modified On : 2025 04 10 12:04
+// Last Modified On : 2026 07 22 15:25
 // ***********************************************************************
 // <copyright company="FCS">
-//     Copyright (C) 2025-2025 FCS Frede's Computer Service.
+//     Copyright (C) 2025-2026 FCS Frede's Computer Service.
 //     This program is free software: you can redistribute it and/or modify
 //     it under the terms of the GNU Affero General Public License as
 //     published by the Free Software Foundation, either version 3 of the
@@ -46,7 +45,7 @@ public class BrRegQuery
     /// <remarks>
     ///     This property contains the street address or other location-specific details of the entity.
     /// </remarks>
-    public string Address { get; set; } = "";
+    public string Address { get; set; } = string.Empty;
 
     /// <summary>
     ///     Gets or sets the city associated with the query.
@@ -58,7 +57,7 @@ public class BrRegQuery
     ///     This property is typically used in conjunction with <see cref="ZipCode" /> to specify the location
     ///     related to the query.
     /// </remarks>
-    public string City { get; set; } = "";
+    public string City { get; set; } = string.Empty;
 
     /// <summary>
     ///     Gets or sets the name associated with the query.
@@ -69,7 +68,7 @@ public class BrRegQuery
     /// <remarks>
     ///     This property is used to specify or retrieve the name associated with the VAT number being queried.
     /// </remarks>
-    public string EntityName { get; set; } = "";
+    public string EntityName { get; set; } = string.Empty;
 
     /// <summary>
     ///     Gets or sets the organisation number associated with the query.
@@ -81,7 +80,7 @@ public class BrRegQuery
     ///     The VAT number is used to identify a specific entity in the Brønnøysund Register Centre.
     ///     Ensure the VAT number is valid and correctly formatted before setting this property.
     /// </remarks>
-    public string VatNumber { get; set; } = "";
+    public string VatNumber { get; set; } = string.Empty;
 
     /// <summary>
     ///     Gets or sets the postal code associated with the query.
@@ -92,5 +91,5 @@ public class BrRegQuery
     /// <remarks>
     ///     The postal code is used to identify the geographical area related to the query.
     /// </remarks>
-    public string ZipCode { get; set; } = "";
+    public string ZipCode { get; set; } = string.Empty;
 }

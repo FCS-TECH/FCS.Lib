@@ -53,18 +53,32 @@
     <Compile Include="Models\MapEntryPoint.cs" />
     <Compile Include="Models\MapFromAddress.cs" />
     <Compile Include="Models\MapResultFromPosition.cs" />
-    <Compile Include="Models\MapServer.cs" />
+    <Compile Include="Models\AtlasLocationRequest.cs" />
     <Compile Include="Models\MapResultFromAddress.cs" />
     <Compile Include="Models\MapAddress.cs" />
     <Compile Include="Models\MapBoundingBox.cs" />
     <Compile Include="Models\MapCoords.cs" />
     <Compile Include="Models\MapFromPosition.cs" />
     <Compile Include="Models\MapViewPort.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\ReverseAddress.cs" />
     <Compile Include="Models\ReverseSummary.cs" />
     <Compile Include="Models\StructuredResult.cs" />
     <Compile Include="Models\StructuredSummary.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AssemblyInfo.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Properties\AssemblyInfo.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>AssemblyInfo.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

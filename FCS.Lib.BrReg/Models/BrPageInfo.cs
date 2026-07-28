@@ -1,14 +1,13 @@
 ﻿// ***********************************************************************
-// Assembly         : FCS.Lib.BrReg
 // Filename         : BrPageInfo.cs
 // Author           : Frede Hundewadt
-// Created          : 2025 04 15 05:04
+// Created          : 2025 10 14 10:10
 // 
 // Last Modified By :
-// Last Modified On : 2025 04 15 05:04
+// Last Modified On : 2026 07 22 15:25
 // ***********************************************************************
 // <copyright company="FCS">
-//     Copyright (C) 2025-2025 FCS Frede's Computer Service.
+//     Copyright (C) 2025-2026 FCS Frede's Computer Service.
 //     This program is free software: you can redistribute it and/or modify
 //     it under the terms of the GNU Affero General Public License as
 //     published by the Free Software Foundation, either version 3 of the
@@ -40,7 +39,7 @@ public class BrPageInfo
     /// The size of the page.
     /// </value>
     public int Size { get; set; }
-    
+
     /// <summary>
     /// Gets or sets the total number of elements available in the data set.
     /// </summary>
@@ -48,7 +47,7 @@ public class BrPageInfo
     /// The total number of elements.
     /// </value>
     public int TotalElements { get; set; }
-    
+
     /// <summary>
     /// Gets or sets the total number of pages available in the BrReg system.
     /// </summary>
@@ -56,7 +55,7 @@ public class BrPageInfo
     /// The total number of pages, calculated based on the total elements and the size of each page.
     /// </value>
     public int TotalPages { get; set; }
-    
+
     /// <summary>
     /// Gets or sets the current page number in the BrReg system.
     /// </summary>

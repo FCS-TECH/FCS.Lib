@@ -1,14 +1,13 @@
 // ***********************************************************************
-// Assembly         : FCS.Lib.BrReg
 // Filename         : BrRegResponseParser.cs
 // Author           : Frede Hundewadt
-// Created          : 2025 01 03 14:01
+// Created          : 2025 10 14 10:10
 // 
 // Last Modified By :
-// Last Modified On : 2025 04 10 13:04
+// Last Modified On : 2026 07 22 15:25
 // ***********************************************************************
 // <copyright company="FCS">
-//     Copyright (C) 2025-2025 FCS Frede's Computer Service.
+//     Copyright (C) 2025-2026 FCS Frede's Computer Service.
 //     This program is free software: you can redistribute it and/or modify
 //     it under the terms of the GNU Affero General Public License as
 //     published by the Free Software Foundation, either version 3 of the
@@ -108,7 +107,6 @@ public class BrRegResponseParser
         {
             return null;
         }
-        
     }
 
     /// <summary>
@@ -135,5 +133,4 @@ public class BrRegResponseParser
             return null;
         }
     }
-
 }

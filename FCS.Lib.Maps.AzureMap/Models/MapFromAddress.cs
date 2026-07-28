@@ -1,4 +1,4 @@
-﻿namespace FCS.Lib.Maps.AzureMap.Models;
+namespace FCS.Lib.Maps.AzureMap.Models;
 
 /// <summary>
 ///     Represents a structured request model for mapping an address using the Azure Map service.
@@ -17,7 +17,7 @@ public class MapFromAddress : MapDefaults
     ///     This property is used to specify the country code in ISO 3166-1 alpha-2 format.
     ///     It is utilized in geolocation requests to identify the country of the address.
     /// </remarks>
-    public string CountryCode { get; set; } = "";
+    public string CountryCode { get; set; } = string.Empty;
 
     /// <summary>
     ///     Gets or sets the postal code associated with the address.
@@ -26,7 +26,7 @@ public class MapFromAddress : MapDefaults
     ///     This property is used to specify the postal code for geolocation requests.
     ///     It is included as part of the structured address information sent to the mapping service.
     /// </remarks>
-    public string PostalCode { get; set; } = "";
+    public string PostalCode { get; set; } = string.Empty;
 
     /// <summary>
     ///     Gets or sets the name of the street in the address.
@@ -36,7 +36,7 @@ public class MapFromAddress : MapDefaults
     ///     It is used alongside <see cref="HouseNumber" /> and other address details
     ///     to create a complete and structured address.
     /// </remarks>
-    public string StreetName { get; set; } = "";
+    public string StreetName { get; set; } = string.Empty;
 
     /// <summary>
     ///     Gets or sets the street number of the address.
@@ -46,7 +46,7 @@ public class MapFromAddress : MapDefaults
     ///     It is used in conjunction with <see cref="StreetName" /> and other address components
     ///     to form a complete and structured address.
     /// </remarks>
-    public string HouseNumber { get; set; } = "";
+    public string HouseNumber { get; set; } = string.Empty;
 
     /// <summary>
     ///     Gets or sets the type of the address mapping request.

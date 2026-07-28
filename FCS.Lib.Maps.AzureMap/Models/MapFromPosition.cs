@@ -33,7 +33,7 @@ namespace FCS.Lib.Maps.AzureMap.Models;
 ///     This class is used to specify the latitude, longitude, and request type for reverse geocoding operations.
 ///     It extends the <see cref="MapDefaults" /> class, inheriting common properties for Azure Map service requests.
 /// </remarks>
-public class MapFromPosition : MapDefaults
+public class MapFromPosition
 {
     /// <summary>
     ///     Gets or sets the latitude coordinate of the position.
@@ -52,13 +52,4 @@ public class MapFromPosition : MapDefaults
     ///     It is typically used in conjunction with the <see cref="Latitude" /> property to define a specific location.
     /// </remarks>
     public double Longitude { get; set; }
-
-    /// <summary>
-    ///     Gets or sets the type of the map operation to be performed.
-    /// </summary>
-    /// <remarks>
-    ///     This property specifies the type of operation, such as "reverse",
-    ///     to be used in map-related requests. The default value is "reverse".
-    /// </remarks>
-    public string Type { get; set; } = "reverse";
 }

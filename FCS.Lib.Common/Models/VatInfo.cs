@@ -1,28 +1,28 @@
-﻿// // ***********************************************************************
-// // Solution         : Inno.Api.v2
-// // Assembly         : FCS.Lib.Common
-// // Filename         : VatInfo.cs
-// // Created          : 2025-01-03 14:01
-// // Last Modified By : dev
-// // Last Modified On : 2025-01-04 11:01
-// // ***********************************************************************
-// // <copyright company="Frede Hundewadt">
-// //     Copyright (C) 2010-2025 Frede Hundewadt
-// //     This program is free software: you can redistribute it and/or modify
-// //     it under the terms of the GNU Affero General Public License as
-// //     published by the Free Software Foundation, either version 3 of the
-// //     License, or (at your option) any later version.
-// //
-// //     This program is distributed in the hope that it will be useful,
-// //     but WITHOUT ANY WARRANTY; without even the implied warranty of
-// //     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// //     GNU Affero General Public License for more details.
-// //
-// //     You should have received a copy of the GNU Affero General Public License
-// //     along with this program.  If not, see [https://www.gnu.org/licenses]
-// // </copyright>
-// // <summary></summary>
-// // ***********************************************************************
+// ***********************************************************************
+// Filename         : VatInfo.cs
+// Author           : Frede Hundewadt
+// Created          : 2025 10 14 10:10
+// 
+// Last Modified By :
+// Last Modified On : 2026 07 22 15:25
+// ***********************************************************************
+// <copyright company="FCS">
+//     Copyright (C) 2025-2026 FCS Frede's Computer Service.
+//     This program is free software: you can redistribute it and/or modify
+//     it under the terms of the GNU Affero General Public License as
+//     published by the Free Software Foundation, either version 3 of the
+//     License, or (at your option) any later version.
+// 
+//     This program is distributed in the hope that it will be useful,
+//     but WITHOUT ANY WARRANTY; without even the implied warranty of
+//     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//     GNU Affero General Public License for more details.
+// 
+//     You should have received a copy of the GNU Affero General Public License
+//     along with this program.  If not, see [https://www.gnu.org/licenses]
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 
 using System.Collections.Generic;
 
@@ -46,7 +46,7 @@ public class VatInfo
     /// <remarks>
     ///     The VAT number is used for tax identification purposes.
     /// </remarks>
-    public string VatNumber { get; set; } = "";
+    public string VatNumber { get; set; } = string.Empty;
 
     /// <summary>
     ///     Gets or sets the name of the entity associated with the VAT information.
@@ -54,7 +54,7 @@ public class VatInfo
     /// <value>
     ///     A <see cref="string" /> representing the name of the entity.
     /// </value>
-    public string Name { get; set; } = "";
+    public string Name { get; set; } = string.Empty;
 
     /// <summary>
     ///     Gets or sets the care-of name (CoName) associated with the company's address.
@@ -64,7 +64,7 @@ public class VatInfo
     ///     an additional name or entity associated with the company's address for mailing
     ///     or identification purposes.
     /// </remarks>
-    public string CoName { get; set; } = "";
+    public string CoName { get; set; } = string.Empty;
 
     /// <summary>
     ///     Gets or sets the address associated with the VAT information.
@@ -72,7 +72,7 @@ public class VatInfo
     /// <value>
     ///     A string representing the address. Defaults to an empty string if not set.
     /// </value>
-    public string Address { get; set; } = "";
+    public string Address { get; set; } = string.Empty;
 
     /// <summary>
     ///     Gets or sets the name of the city associated with the VAT information.
@@ -80,7 +80,7 @@ public class VatInfo
     /// <value>
     ///     A <see cref="string" /> representing the city name. Defaults to an empty string.
     /// </value>
-    public string City { get; set; } = "";
+    public string City { get; set; } = string.Empty;
 
     /// <summary>
     ///     Gets or sets the postal code associated with the VAT information.
@@ -88,7 +88,7 @@ public class VatInfo
     /// <value>
     ///     A <see cref="string" /> representing the postal code.
     /// </value>
-    public string ZipCode { get; set; } = "";
+    public string ZipCode { get; set; } = string.Empty;
 
     /// <summary>
     ///     Gets or sets the collection of VAT states associated with the entity.

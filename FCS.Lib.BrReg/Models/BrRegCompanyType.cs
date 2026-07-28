@@ -1,14 +1,13 @@
-﻿// ***********************************************************************
-// Assembly         : FCS.Lib.BrReg
+// ***********************************************************************
 // Filename         : BrRegCompanyType.cs
 // Author           : Frede Hundewadt
-// Created          : 2025 04 09 13:04
+// Created          : 2025 10 14 10:10
 // 
 // Last Modified By :
-// Last Modified On : 2025 04 10 12:04
+// Last Modified On : 2026 07 22 15:25
 // ***********************************************************************
 // <copyright company="FCS">
-//     Copyright (C) 2025-2025 FCS Frede's Computer Service.
+//     Copyright (C) 2025-2026 FCS Frede's Computer Service.
 //     This program is free software: you can redistribute it and/or modify
 //     it under the terms of the GNU Affero General Public License as
 //     published by the Free Software Foundation, either version 3 of the
@@ -43,7 +42,7 @@ public class BrRegCompanyType
     /// <value>
     ///     A <see cref="string" /> containing the code for the company type.
     /// </value>
-    public string Kode { get; set; } = "";
+    public string Kode { get; set; } = string.Empty;
 
     /// <summary>
     ///     Gets or sets the description of the company type.
@@ -51,7 +50,7 @@ public class BrRegCompanyType
     /// <value>
     ///     A string representing the description of the company type.
     /// </value>
-    public string Beskrivelse { get; set; } = "";
+    public string Beskrivelse { get; set; } = string.Empty;
 
     /// <summary>
     ///     Gets or sets a value indicating whether the company type is obsolete.
@@ -60,5 +59,5 @@ public class BrRegCompanyType
     ///     A string representing the obsolescence status of the company type.
     ///     If the value is not empty or null, the company type is considered obsolete.
     /// </value>
-    public string Utgaatt { get; set; } = "";
+    public string Utgaatt { get; set; } = string.Empty;
 }

@@ -1,14 +1,13 @@
 // ***********************************************************************
-// Assembly         : FCS.Lib.Utility
 // Filename         : Misc.cs
 // Author           : Frede Hundewadt
-// Created          : 2025 05 24 10:05
+// Created          : 2025 10 14 10:10
 // 
 // Last Modified By :
-// Last Modified On : 2025 05 24 10:23
+// Last Modified On : 2026 07 22 15:25
 // ***********************************************************************
 // <copyright company="FCS">
-//     Copyright (C) 2025-2025 FCS Frede's Computer Service.
+//     Copyright (C) 2025-2026 FCS Frede's Computer Service.
 //     This program is free software: you can redistribute it and/or modify
 //     it under the terms of the GNU Affero General Public License as
 //     published by the Free Software Foundation, either version 3 of the
@@ -66,6 +65,5 @@ namespace FCS.Lib.Utility
         {
             return Convert.ToUInt32(timespan.Ticks / 10000000L) / 60;
         }
-
     }
 }

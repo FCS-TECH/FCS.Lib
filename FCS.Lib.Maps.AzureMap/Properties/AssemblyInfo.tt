@@ -22,8 +22,8 @@
 using System.Reflection;
 using System.Runtime.InteropServices;
 
-[assembly: AssemblyTitle("FCS.Lib.Common")]
-[assembly: AssemblyDescription("FCS.Lib.Common")]
+[assembly: AssemblyTitle("FCS.Lib.Maps.AzureMap")]
+[assembly: AssemblyDescription("FCS.Lib.Maps.AzureMap")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("FCS")]
 [assembly: AssemblyProduct("FCS.Lib.Common")]

@@ -1,28 +1,28 @@
-// // ***********************************************************************
-// // Solution         : Inno.Api.v2
-// // Assembly         : FCS.Lib.Utility
-// // Filename         : Transform.cs
-// // Created          : 2025-01-03 14:01
-// // Last Modified By : dev
-// // Last Modified On : 2025-01-04 12:01
-// // ***********************************************************************
-// // <copyright company="Frede Hundewadt">
-// //     Copyright (C) 2010-2025 Frede Hundewadt
-// //     This program is free software: you can redistribute it and/or modify
-// //     it under the terms of the GNU Affero General Public License as
-// //     published by the Free Software Foundation, either version 3 of the
-// //     License, or (at your option) any later version.
-// //
-// //     This program is distributed in the hope that it will be useful,
-// //     but WITHOUT ANY WARRANTY; without even the implied warranty of
-// //     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// //     GNU Affero General Public License for more details.
-// //
-// //     You should have received a copy of the GNU Affero General Public License
-// //     along with this program.  If not, see [https://www.gnu.org/licenses]
-// // </copyright>
-// // <summary></summary>
-// // ***********************************************************************
+// ***********************************************************************
+// Filename         : Transform.cs
+// Author           : Frede Hundewadt
+// Created          : 2025 10 14 10:10
+// 
+// Last Modified By :
+// Last Modified On : 2026 07 22 15:25
+// ***********************************************************************
+// <copyright company="FCS">
+//     Copyright (C) 2025-2026 FCS Frede's Computer Service.
+//     This program is free software: you can redistribute it and/or modify
+//     it under the terms of the GNU Affero General Public License as
+//     published by the Free Software Foundation, either version 3 of the
+//     License, or (at your option) any later version.
+// 
+//     This program is distributed in the hope that it will be useful,
+//     but WITHOUT ANY WARRANTY; without even the implied warranty of
+//     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//     GNU Affero General Public License for more details.
+// 
+//     You should have received a copy of the GNU Affero General Public License
+//     along with this program.  If not, see [https://www.gnu.org/licenses]
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 
 using System;
 using System.Collections;
@@ -70,7 +70,7 @@ public static class Transform
     public static bool SameVirtualMonth(string lastDate, string workDate, int offSet)
     {
         var lastDateTime = IsoDateToTimestamp(lastDate);
-        return lastDateTime >= GetVirtualMonthStart(workDate, offSet) && 
+        return lastDateTime >= GetVirtualMonthStart(workDate, offSet) &&
                lastDateTime <= GetVirtualMonthEnd(workDate, offSet);
     }
 
@@ -230,6 +230,16 @@ public static class Transform
     public static string DateTimeIso8601(DateTime date)
     {
         return date.ToString("o", CultureInfo.InvariantCulture);
+    }
+
+    /// <summary>
+    /// Converts the specified <see cref="DateTime"/> to an ISO 8601 formatted date string.
+    /// </summary>
+    /// <param name="date">The <see cref="DateTime"/> to convert.</param>
+    /// <returns>A string representing the date in ISO 8601 format (yyyy-MM-dd).</returns>
+    public static string DateTimeIsoDate(DateTime date)
+    {
+        return date.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture);
     }
 
     /// <summary>
@@ -492,13 +502,43 @@ public static class Transform
     /// <exception cref="IFormatProvider">
     ///     Thrown if the provided <paramref name="enumeration" /> is not a valid enumeration type.
     /// </exception>
-    /// <remarks>
-    ///     This method uses <see cref="enumeration" /> to perform the conversion.
-    ///     Ensure that the input is a valid enumeration value to avoid runtime exceptions.
-    /// </remarks>
     public static int EnumToInt(object enumeration)
     {
         return Convert.ToInt32(enumeration, CultureInfo.InvariantCulture);
+    }
+
+    /// <summary>
+    /// Converts the first character of the specified string to lowercase, if it is uppercase.
+    /// </summary>
+    /// <param name="str">The input string to process. Can be <c>null</c>.</param>
+    /// <returns>
+    /// A new string with the first character converted to lowercase if it was uppercase; 
+    /// otherwise, the original string. Returns <c>null</c> if the input string is <c>null</c>.
+    /// </returns>
+    public static string FirstCharToLower(this string str)
+    {
+        if (!string.IsNullOrEmpty(str) && char.IsUpper(str[0]))
+            return str.Length == 1 ? char.ToLower(str[0]).ToString() : char.ToLower(str[0]) + str.Substring(1);
+        return str;
+    }
+
+    /// <summary>
+    /// Converts the first character of the specified string to uppercase.
+    /// </summary>
+    /// <param name="str">The input string whose first character is to be converted to uppercase.</param>
+    /// <returns>
+    /// A new string with the first character converted to uppercase if the input string is not null or empty 
+    /// and the first character is lowercase; otherwise, the original string.
+    /// </returns>
+    /// <remarks>
+    /// This method is an extension method for the <see cref="string"/> class. 
+    /// It ensures that the first character of the string is capitalized while leaving the rest of the string unchanged.
+    /// </remarks>
+    public static string FirstCharToUpper(this string str)
+    {
+        if (!string.IsNullOrEmpty(str) && char.IsLower(str[0]))
+            return str.Length == 1 ? char.ToUpper(str[0]).ToString() : char.ToUpper(str[0]) + str.Substring(1);
+        return str;
     }
 
     /// <summary>
@@ -508,7 +548,7 @@ public static class Transform
     /// <returns>The string representation of the enumeration value, or an empty string if the value is <c>null</c>.</returns>
     public static string EnumToString(Enum value)
     {
-        return value == null ? string.Empty : value.ToString();
+        return value == null ? "" : value.ToString();
     }
 
     /// <summary>
@@ -654,7 +694,7 @@ public static class Transform
     /// </returns>
     public static string ListToString<T>(List<T> list, string delimiter)
     {
-        var empty = string.Empty;
+        var empty = "";
         if (list == null) return empty;
         var enumerator = (IEnumerator)list.GetType().GetMethod("GetEnumerator")?.Invoke(list, null);
         while (enumerator != null && enumerator.MoveNext())
@@ -663,5 +703,4 @@ public static class Transform
 
         return empty;
     }
-    
 }

@@ -1,7 +1,7 @@
-﻿// // ***********************************************************************
+// // ***********************************************************************
 // // Solution         : Inno.Api.v2
 // // Assembly         : FCS.Lib.Maps.AzureMap
-// // Filename         : MapServer.cs
+// // Filename         : AtlasLocationRequest.cs
 // // Created          : 2025-01-03 14:01
 // // Last Modified By : dev
 // // Last Modified On : 2025-01-04 11:01
@@ -34,16 +34,15 @@ namespace FCS.Lib.Maps.AzureMap.Models;
 ///     including the API host URL, API key, and version. It is used in conjunction with services
 ///     like <see cref="FCS.Lib.Maps.AzureMap.IAtlasRequestService" /> to perform geolocation operations.
 /// </remarks>
-public class MapServer
+public class AtlasLocationRequest
 {
     /// <summary>
     ///     Gets or sets the base URL of the Azure Maps API host.
     /// </summary>
     /// <remarks>
     ///     This property defines the root endpoint for Azure Maps API requests.
-    ///     By default, it is set to "https://atlas.microsoft.com".
     /// </remarks>
-    public string Host { get; set; } = "https://atlas.microsoft.com";
+    public string Host { get; set; }
 
     /// <summary>
     ///     Gets or sets the API key used for authenticating requests to the Azure Map service.
@@ -61,5 +60,15 @@ public class MapServer
     ///     This property specifies the API version that will be appended as a query parameter
     ///     in requests to the Azure Maps API. The default value is "1.0".
     /// </remarks>
-    public string ApiVersion { get; set; } = "1.0";
+    public string ApiVersion { get; set; }
+    
+    /// <summary>
+    /// Gets or sets the intent of the location request.
+    /// </summary>
+    /// <remarks>
+    /// This property specifies the purpose or context of the request being made to the Azure Maps API.
+    /// It can be used to indicate the desired outcome or type of operation, such as searching for a location
+    /// or retrieving specific geospatial data.
+    /// </remarks>
+    public string Intent { get; set; }
 }

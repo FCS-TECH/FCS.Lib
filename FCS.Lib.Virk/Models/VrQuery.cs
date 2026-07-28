@@ -1,28 +1,28 @@
-﻿// ***********************************************************************
-//  Solution         : Inno.Api.v2
-//  Assembly         : FCS.Lib.Virk
-//  Filename         : VrQuery.cs
-//  Created          : 2025-01-25 10:01
-//  Last Modified By : dev
-//  Last Modified On : 2025-01-25 10:01
-//  ***********************************************************************
-//  <copyright company="Frede Hundewadt">
-//      Copyright (C) 2010-2025 Frede Hundewadt
-//      This program is free software: you can redistribute it and/or modify
-//      it under the terms of the GNU Affero General Public License as
-//      published by the Free Software Foundation, either version 3 of the
-//      License, or (at your option) any later version.
+// ***********************************************************************
+// Filename         : VrQuery.cs
+// Author           : Frede Hundewadt
+// Created          : 2025 10 14 10:10
 // 
-//      This program is distributed in the hope that it will be useful,
-//      but WITHOUT ANY WARRANTY; without even the implied warranty of
-//      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-//      GNU Affero General Public License for more details.
+// Last Modified By :
+// Last Modified On : 2026 07 22 15:25
+// ***********************************************************************
+// <copyright company="FCS">
+//     Copyright (C) 2025-2026 FCS Frede's Computer Service.
+//     This program is free software: you can redistribute it and/or modify
+//     it under the terms of the GNU Affero General Public License as
+//     published by the Free Software Foundation, either version 3 of the
+//     License, or (at your option) any later version.
 // 
-//      You should have received a copy of the GNU Affero General Public License
-//      along with this program.  If not, see [https://www.gnu.org/licenses]
-//  </copyright>
-//  <summary></summary>
-//  ***********************************************************************
+//     This program is distributed in the hope that it will be useful,
+//     but WITHOUT ANY WARRANTY; without even the implied warranty of
+//     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//     GNU Affero General Public License for more details.
+// 
+//     You should have received a copy of the GNU Affero General Public License
+//     along with this program.  If not, see [https://www.gnu.org/licenses]
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 
 namespace FCS.Lib.Virk.Models;
 
@@ -46,7 +46,7 @@ public class VrQuery
     ///     A valid precise lookup requires that either this property or the <see cref="VatNumber" />
     ///     is not null or whitespace.
     /// </remarks>
-    public string EntityName { get; set; } = "";
+    public string EntityName { get; set; } = string.Empty;
 
     /// <summary>
     ///     Gets or sets the house number associated with the address lookup.
@@ -55,7 +55,7 @@ public class VrQuery
     ///     This property is used during address validation to ensure that the house number is not null,
     ///     not whitespace, and can be parsed as an integer.
     /// </remarks>
-    public string HouseNumber { get; set; } = "";
+    public string HouseNumber { get; set; } = string.Empty;
 
     /// <summary>
     ///     Gets or sets the name of the street associated with the query.
@@ -63,7 +63,7 @@ public class VrQuery
     /// <remarks>
     ///     This property is used during address lookups to validate that the street name is not null or whitespace.
     /// </remarks>
-    public string StreetName { get; set; } = "";
+    public string StreetName { get; set; } = string.Empty;
 
     /// <summary>
     ///     Gets or sets the VAT (Value Added Tax) number associated with the query.
@@ -73,7 +73,7 @@ public class VrQuery
     ///     A valid precise lookup requires that either this property or the <see cref="EntityName" />
     ///     is not null or whitespace.
     /// </remarks>
-    public string VatNumber { get; set; } = "";
+    public string VatNumber { get; set; } = string.Empty;
 
     /// <summary>
     ///     Gets or sets the postal code associated with the query.
@@ -82,6 +82,5 @@ public class VrQuery
     ///     This property is used during address lookups to validate the query.
     ///     It must not be null or whitespace to ensure the query is valid.
     /// </remarks>
-    public string ZipCode { get; set; } = "";
-
+    public string ZipCode { get; set; } = string.Empty;
 }

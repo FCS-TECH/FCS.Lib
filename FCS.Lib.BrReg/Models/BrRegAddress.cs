@@ -1,14 +1,13 @@
-﻿// ***********************************************************************
-// Assembly         : FCS.Lib.BrReg
+// ***********************************************************************
 // Filename         : BrRegAddress.cs
 // Author           : Frede Hundewadt
-// Created          : 2025 04 09 13:04
+// Created          : 2025 10 14 10:10
 // 
 // Last Modified By :
-// Last Modified On : 2025 04 10 12:04
+// Last Modified On : 2026 07 22 15:25
 // ***********************************************************************
 // <copyright company="FCS">
-//     Copyright (C) 2025-2025 FCS Frede's Computer Service.
+//     Copyright (C) 2025-2026 FCS Frede's Computer Service.
 //     This program is free software: you can redistribute it and/or modify
 //     it under the terms of the GNU Affero General Public License as
 //     published by the Free Software Foundation, either version 3 of the
@@ -41,7 +40,7 @@ public class BrRegAddress
     /// <summary>
     ///     Gets or sets the name of the country associated with the address.
     /// </summary>
-    public string Land { get; set; } = "";
+    public string Land { get; set; } = string.Empty;
 
     /// <summary>
     ///     Gets or sets the country code associated with the address.
@@ -49,7 +48,7 @@ public class BrRegAddress
     /// <remarks>
     ///     The country code is typically represented as a two-letter ISO 3166-1 alpha-2 code.
     /// </remarks>
-    public string Landkode { get; set; } = "";
+    public string Landkode { get; set; } = string.Empty;
 
     /// <summary>
     ///     Gets or sets the postal code associated with the address.
@@ -57,7 +56,7 @@ public class BrRegAddress
     /// <remarks>
     ///     The postal code is used to identify the specific geographic area of the address.
     /// </remarks>
-    public string Postnummer { get; set; } = "";
+    public string Postnummer { get; set; } = string.Empty;
 
     /// <summary>
     ///     Gets or sets the name of the municipality or locality associated with the postal code.
@@ -66,7 +65,7 @@ public class BrRegAddress
     ///     This property represents the "Poststed" (postal place) in the Brønnøysund Register Center's address model.
     ///     It is typically used to identify the city or area corresponding to the postal code.
     /// </remarks>
-    public string Poststed { get; set; } = "";
+    public string Poststed { get; set; } = string.Empty;
 
     /// <summary>
     ///     Gets or sets the address lines of the Brønnøysund Register Center (Brønnøysundregistrene).
@@ -81,11 +80,11 @@ public class BrRegAddress
     ///     The municipality provides additional geographical context for the address
     ///     and is typically used in conjunction with the postal code and country.
     /// </remarks>
-    public string Kommune { get; set; } = "";
+    public string Kommune { get; set; } = string.Empty;
 
     /// <summary>
     ///     Gets or sets the municipality number (kommunenummer) associated with the address.
     ///     The municipality number is a unique identifier for municipalities in Norway.
     /// </summary>
-    public string Kommunenummer { get; set; } = "";
+    public string Kommunenummer { get; set; } = string.Empty;
 }

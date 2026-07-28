@@ -1,14 +1,13 @@
-﻿// ***********************************************************************
-// Assembly         : FCS.Lib.BrReg
+// ***********************************************************************
 // Filename         : BrRegCompany.cs
 // Author           : Frede Hundewadt
-// Created          : 2025 04 09 13:04
+// Created          : 2025 10 14 10:10
 // 
 // Last Modified By :
-// Last Modified On : 2025 04 10 12:04
+// Last Modified On : 2026 07 22 15:25
 // ***********************************************************************
 // <copyright company="FCS">
-//     Copyright (C) 2025-2025 FCS Frede's Computer Service.
+//     Copyright (C) 2025-2026 FCS Frede's Computer Service.
 //     This program is free software: you can redistribute it and/or modify
 //     it under the terms of the GNU Affero General Public License as
 //     published by the Free Software Foundation, either version 3 of the
@@ -48,7 +47,7 @@ public class BrRegCompany
     /// <value>
     ///     A <see cref="string" /> representing the unique organization number.
     /// </value>
-    public string Organisasjonsnummer { get; set; } = "";
+    public string Organisasjonsnummer { get; set; } = string.Empty;
 
     /// <summary>
     ///     Gets or sets the name of the company.
@@ -56,14 +55,14 @@ public class BrRegCompany
     /// <value>
     ///     The name of the company as registered in the Brønnøysund Register.
     /// </value>
-    public string Navn { get; set; } = "";
+    public string Navn { get; set; } = string.Empty;
 
     /// <summary>
     ///     Gets or sets the deletion date of the company.
     ///     This property indicates the date on which the company was deleted
     ///     from the Brønnøysund Register Center (Brønnøysundregistrene).
     /// </summary>
-    public string Slettedato { get; set; } = "";
+    public string Slettedato { get; set; } = string.Empty;
 
     /// <summary>
     ///     Gets or sets the organizational form of the company.

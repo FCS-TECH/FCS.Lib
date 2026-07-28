@@ -1,4 +1,4 @@
-﻿// // ***********************************************************************
+// // ***********************************************************************
 // // Solution         : Inno.Api.v2
 // // Assembly         : FCS.Lib.Maps.AzureMap
 // // Filename         : StructuredSummary.cs
@@ -43,7 +43,7 @@ public class StructuredSummary
     /// <value>
     ///     A <see cref="string" /> representing the query.
     /// </value>
-    public string Query { get; set; } = "";
+    public string Query { get; set; } = string.Empty;
 
     /// <summary>
     ///     Gets or sets the type of the query executed.
@@ -52,7 +52,7 @@ public class StructuredSummary
     ///     This property represents the classification or category of the query,
     ///     which can be used to determine the nature or intent of the query.
     /// </remarks>
-    public string QueryType { get; set; } = "";
+    public string QueryType { get; set; } = string.Empty;
 
     /// <summary>
     ///     Gets or sets the time taken to execute the query, measured in milliseconds.

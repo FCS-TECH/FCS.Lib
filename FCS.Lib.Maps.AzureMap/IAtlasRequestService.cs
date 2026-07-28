@@ -39,8 +39,8 @@ public interface IAtlasRequestService
     /// <summary>
     ///     Retrieves geolocation information based on a specified geographic position using the Azure Maps API.
     /// </summary>
-    /// <param name="mapServer">
-    ///     The <see cref="FCS.Lib.Maps.AzureMap.Models.MapServer" /> instance containing the server configuration
+    /// <param name="atlasLocationRequest">
+    ///     The <see cref="AtlasLocationRequest" /> instance containing the server configuration
     ///     for interacting with the Azure Maps API.
     /// </param>
     /// <param name="info">
@@ -54,13 +54,13 @@ public interface IAtlasRequestService
     /// <remarks>
     ///     This method performs a reverse geocoding operation to obtain address information based on latitude and longitude.
     /// </remarks>
-    Task<MapResultFromPosition> GetInfoFromPosition(MapServer mapServer, MapFromPosition info);
+    Task<MapResultFromPosition> GetInfoFromPosition(AtlasLocationRequest atlasLocationRequest, MapFromPosition info);
 
     /// <summary>
     ///     Retrieves detailed information about a location based on a structured address query using the Azure Map service.
     /// </summary>
-    /// <param name="mapServer">
-    ///     An instance of <see cref="MapServer" /> containing the server configuration, such as the host URL and API key.
+    /// <param name="atlasLocationRequest">
+    ///     An instance of <see cref="AtlasLocationRequest" /> containing the server configuration, such as the host URL and API key.
     /// </param>
     /// <param name="info">
     ///     An instance of <see cref="MapFromAddress" /> containing the structured address details for the query.
@@ -70,5 +70,5 @@ public interface IAtlasRequestService
     ///     <see cref="MapResultFromAddress" /> with the results of the address search, including metadata and detailed
     ///     results.
     /// </returns>
-    Task<MapResultFromAddress> GetInfoFromAddress(MapServer mapServer, MapFromAddress info);
+    Task<MapResultFromAddress> GetInfoFromAddress(AtlasLocationRequest atlasLocationRequest, MapFromAddress info);
 }

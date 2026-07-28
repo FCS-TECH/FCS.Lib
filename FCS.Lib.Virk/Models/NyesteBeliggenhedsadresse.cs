@@ -1,28 +1,28 @@
-﻿// ***********************************************************************
-//  Solution         : Inno.Api.v2
-//  Assembly         : FCS.Lib.Virk
-//  Filename         : NyesteBeliggenhedsadresse.cs
-//  Created          : 2025-01-25 10:01
-//  Last Modified By : dev
-//  Last Modified On : 2025-01-25 10:01
-//  ***********************************************************************
-//  <copyright company="Frede Hundewadt">
-//      Copyright (C) 2010-2025 Frede Hundewadt
-//      This program is free software: you can redistribute it and/or modify
-//      it under the terms of the GNU Affero General Public License as
-//      published by the Free Software Foundation, either version 3 of the
-//      License, or (at your option) any later version.
+// ***********************************************************************
+// Filename         : NyesteBeliggenhedsadresse.cs
+// Author           : Frede Hundewadt
+// Created          : 2025 10 14 10:10
 // 
-//      This program is distributed in the hope that it will be useful,
-//      but WITHOUT ANY WARRANTY; without even the implied warranty of
-//      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-//      GNU Affero General Public License for more details.
+// Last Modified By :
+// Last Modified On : 2026 07 22 15:25
+// ***********************************************************************
+// <copyright company="FCS">
+//     Copyright (C) 2025-2026 FCS Frede's Computer Service.
+//     This program is free software: you can redistribute it and/or modify
+//     it under the terms of the GNU Affero General Public License as
+//     published by the Free Software Foundation, either version 3 of the
+//     License, or (at your option) any later version.
 // 
-//      You should have received a copy of the GNU Affero General Public License
-//      along with this program.  If not, see [https://www.gnu.org/licenses]
-//  </copyright>
-//  <summary></summary>
-//  ***********************************************************************
+//     This program is distributed in the hope that it will be useful,
+//     but WITHOUT ANY WARRANTY; without even the implied warranty of
+//     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//     GNU Affero General Public License for more details.
+// 
+//     You should have received a copy of the GNU Affero General Public License
+//     along with this program.  If not, see [https://www.gnu.org/licenses]
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 
 namespace FCS.Lib.Virk.Models;
 
@@ -67,14 +67,14 @@ public class NyesteBeliggenhedsadresse
     /// <value>
     ///     A <see cref="string" /> representing the street name. Defaults to an empty string if not set.
     /// </value>
-    public string Vejnavn { get; set; } = "";
+    public string Vejnavn { get; set; } = string.Empty;
 
     /// <summary>
     ///     Gets or sets the care-of name (CoNavn) associated with the address.
     ///     This property typically represents an additional name or entity
     ///     associated with the address for identification purposes.
     /// </summary>
-    public string CoNavn { get; set; } = "";
+    public string CoNavn { get; set; } = string.Empty;
 
     /// <summary>
     ///     Gets or sets the name of the postal district associated with the address.
@@ -82,5 +82,5 @@ public class NyesteBeliggenhedsadresse
     /// <remarks>
     ///     This property represents the city or locality name corresponding to the postal code.
     /// </remarks>
-    public string PostDistrikt { get; set; } = "";
+    public string PostDistrikt { get; set; } = string.Empty;
 }

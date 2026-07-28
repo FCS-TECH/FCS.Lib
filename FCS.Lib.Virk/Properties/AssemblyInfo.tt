@@ -1,4 +1,4 @@
-﻿<#@ template debug="true" hostspecific="false" language="C#" #>
+<#@ template debug="true" hostspecific="false" language="C#" #>
 <#@ output extension=".cs" #>
 <#
     int major    = 2;
@@ -22,11 +22,11 @@
 using System.Reflection;
 using System.Runtime.InteropServices;
 
-[assembly: AssemblyTitle("Inno.Erp.Bc")]
-[assembly: AssemblyDescription("FCS.Inno")]
+[assembly: AssemblyTitle("FCS.Lib.Virk")]
+[assembly: AssemblyDescription("FCS.Lib.Virk")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("FCS")]
-[assembly: AssemblyProduct("FCS.Inno")]
+[assembly: AssemblyProduct("FCS.Lib.Virk")]
 [assembly: AssemblyCopyright("AGPL-3.0-or-later Copyright © FCS 2015-2022")]
 [assembly: AssemblyTrademark("FCS © Innotec Danmark A/S")]
 [assembly: AssemblyCulture("")]

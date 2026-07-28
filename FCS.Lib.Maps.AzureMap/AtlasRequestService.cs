@@ -1,4 +1,4 @@
-﻿// // ***********************************************************************
+// // ***********************************************************************
 // // Solution         : Inno.Api.v2
 // // Assembly         : FCS.Lib.Maps.AzureMap
 // // Filename         : AtlasRequestService.cs
@@ -47,7 +47,7 @@ public class AtlasRequestService : IAtlasRequestService
     ///     Retrieves map information based on a geographical position.
     /// </summary>
     /// <param name="server">
-    ///     The <see cref="MapServer" /> instance containing server details such as host, API key, and API version.
+    ///     The <see cref="AtlasLocationRequest" /> instance containing server details such as host, API key, and API version.
     /// </param>
     /// <param name="info">
     ///     The <see cref="MapFromPosition" /> instance containing the latitude, longitude, and additional request parameters.
@@ -57,7 +57,7 @@ public class AtlasRequestService : IAtlasRequestService
     ///     object
     ///     with the map information retrieved from the specified position, or <c>null</c> if the request fails.
     /// </returns>
-    public async Task<MapResultFromPosition> GetInfoFromPosition(MapServer server, MapFromPosition info)
+    public async Task<MapResultFromPosition> GetInfoFromPosition(AtlasLocationRequest server, MapFromPosition info)
     {
         // create a map request
         // template
@@ -70,13 +70,10 @@ public class AtlasRequestService : IAtlasRequestService
 
         var sb = new StringBuilder();
         sb.Append($"{server.Host}");
-        sb.Append($"/{info.Action}");
-        sb.Append($"/{info.Scope}");
-        sb.Append($"/{info.Type}");
-        sb.Append($"/{info.Format}");
+        sb.Append($"/{server.Intent}");
         sb.Append($"?api-version={server.ApiVersion}");
         sb.Append($"&subscription-key={server.ApiKey}");
-        sb.Append($"query={info.Latitude},{info.Longitude}");
+        sb.Append($"coordinates={info.Latitude},{info.Longitude}");
         var endpoint = sb.ToString();
 
         using var client = new HttpClient();
@@ -98,7 +95,7 @@ public class AtlasRequestService : IAtlasRequestService
     ///     Retrieves map information based on the provided address details.
     /// </summary>
     /// <param name="server">
-    ///     The <see cref="MapServer" /> instance containing server configuration, such as the host URL and API version.
+    ///     The <see cref="AtlasLocationRequest" /> instance containing server configuration, such as the host URL and API version.
     /// </param>
     /// <param name="info">
     ///     The <see cref="MapFromAddress" /> instance containing address details, such as country code, postal code, street
@@ -108,7 +105,7 @@ public class AtlasRequestService : IAtlasRequestService
     ///     A task that represents the asynchronous operation. The task result contains a <see cref="MapResultFromAddress" />
     ///     object with the map information, or <c>null</c> if the request fails.
     /// </returns>
-    public async Task<MapResultFromAddress> GetInfoFromAddress(MapServer server, MapFromAddress info)
+    public async Task<MapResultFromAddress> GetInfoFromAddress(AtlasLocationRequest server, MapFromAddress info)
     {
         // server: "https://atlas.microsoft.com"
         // url: "/search"
